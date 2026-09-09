@@ -8,12 +8,12 @@ export function resolvePortfolioLocation(hash) {
   let anchor;
   try { anchor = decodeURIComponent(hash.replace(/^#/, '')) || 'home'; }
   catch { return { section: 'missing', anchor: 'invalid-link' }; }
-  const aliases = { projects: 'work', technology: 'skills', connect: 'contact', experience: 'journey/experience', education: 'journey/education', certifications: 'journey/certifications', recognition: 'journey/recognition' };
+  const aliases = { overview: 'home', projects: 'work', technology: 'skills', connect: 'contact', experience: 'journey/experience', education: 'journey/education', certifications: 'journey/certifications', recognition: 'journey/recognition' };
   const canonical = Object.hasOwn(aliases, anchor) ? aliases[anchor] : anchor;
   const [section, group, item, extra] = canonical.split('/');
   const route = { section, group, item, anchor };
   if (extra !== undefined) return { ...route, section: 'missing' };
-  if (['home', 'overview', 'about', 'contact', 'communities'].includes(section) && group === undefined) return route;
+  if (['home', 'about', 'contact', 'communities'].includes(section) && group === undefined) return route;
   if (section === 'work' && item === undefined && (group === undefined || projects.some(p => p.id === group))) return route;
   if (section === 'skills') {
     const technologyGroup = technologyGroups.find(g => g.id === (group || 'frontend'));

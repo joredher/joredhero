@@ -1,0 +1,76 @@
+.section-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 14, .7);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  z-index: 30;
+}
+.section-modal.is-open .section-modal-backdrop { opacity: 1; }
+
+.section-modal-panel {
+  position: fixed;
+  top: 8vh;
+  left: 50%;
+  width: min(94vw, 960px);
+  max-height: min(86dvh, 760px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(130deg, #17213199, #14182099);
+  border: 1px solid #303d51;
+  border-radius: 14px;
+  box-shadow: 0 30px 80px #0008;
+  opacity: 0;
+  transform: translateX(-50%) translateY(18px) scale(.97);
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 30;
+}
+.section-modal.is-open .section-modal-panel {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.section-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 28px 0;
+  flex-shrink: 0;
+}
+.section-modal-close {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  min-height: 40px;
+  padding: 0 0 0 10px;
+  font-size: 12px;
+  color: #bdc6d6;
+  flex-shrink: 0;
+}
+.section-modal-close span { font-size: 22px; font-weight: 400; line-height: 1; }
+.section-modal-close:hover { color: white; }
+
+.explorer-navigation { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 28px; border-bottom: 1px solid #303d51; flex-shrink: 0; }
+.explorer-navigation a { display: flex; align-items: center; gap: 8px; min-height: 40px; border: 1px solid transparent; border-radius: 5px; padding: 8px 12px; font-size: 11px; color: #a7b4c8; }
+.explorer-navigation a>span { font-size: 9px; color: #7d99c9; }
+.explorer-navigation svg { display: none; }
+.explorer-navigation a:hover { color: #fff; background: #1b2639; }
+.explorer-navigation a[aria-current] { border-color: #415d88; background: #1c2d49; color: white; }
+
+.section-modal-body { overflow-y: auto; flex: 1 1 auto; min-width: 0; }
+
+@media (max-width: 760px) {
+  .section-modal-panel { top: 4vh; max-height: 92dvh; }
+  .section-modal-head { padding: 18px 18px 0; }
+  .explorer-navigation { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 12px 16px; }
+  .explorer-navigation a { padding: 8px; font-size: 10px; }
+}
+@media (max-width: 420px) {
+  .explorer-navigation { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-modal-backdrop, .section-modal-panel { transition: none; }
+}

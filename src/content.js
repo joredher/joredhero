@@ -16,11 +16,3 @@ export const skills = {
   Backend: ['Laravel', 'MySQL'],
   'This portfolio': ['React', 'Vite', 'CSS'],
 };
-
-export const navigation = [
-  { id: 'home', label: 'Home' },
-  { id: 'overview', label: 'Explore' },
-  { id: 'about', label: 'About' },
-  { id: 'work', label: 'Work' },
-  { id: 'contact', label: 'Contact' },
-];

@@ -14,6 +14,6 @@ export default function ProfileHero({ route }) {
       <p className="map-hero-statement">{t("A technical mind.")}<br /><span>{t("A personal point of view.")}</span></p>
     </div>
     <ProfileMap route={route} />
-    <div className="hero-footer"><span>{t('BASED IN {location}', { location: profile.location.toUpperCase() })}</span><a href="#overview">{t("SCROLL TO EXPLORE ")}<span aria-hidden="true">↓</span></a><span className="hero-edition">{t("PORTFOLIO / VOL. 01")}</span></div>
+    <div className="hero-footer"><span>{t('BASED IN {location}', { location: profile.location.toUpperCase() })}</span><span className="hero-edition">{t("PORTFOLIO / VOL. 01")}</span></div>
   </section>;
 }
