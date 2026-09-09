@@ -1,10 +1,11 @@
-// Add only supplied records. Each entry may contain id, title, organization,
-// period, summary and a details array. Empty collections are intentional.
+import { experience } from './experience.js';
+import { education, certifications } from './education.js';
+
 export const journeyGroups = [
-  { id: 'experience', label: 'Experience', description: 'Professional roles and responsibilities will be collected here.', entries: [] },
-  { id: 'education', label: 'Education', description: 'Education and qualifications will be collected here.', entries: [] },
-  { id: 'certifications', label: 'Certifications', description: 'Certifications and verification links will be collected here.', entries: [] },
+  { id: 'experience', label: 'Experience', entries: experience },
+  { id: 'education', label: 'Education', entries: education },
+  { id: 'certifications', label: 'Certifications', entries: certifications },
   { id: 'recognition', label: 'Recognition', description: 'Professional recognition and achievements will be collected here.', entries: [] },
 ];
-
+// No community memberships or awards have been supplied.
 export const communities = [];

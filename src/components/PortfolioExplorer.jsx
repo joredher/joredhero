@@ -11,6 +11,8 @@ import Arrow from './Arrow.jsx';
 import TechnologyLogo from './TechnologyLogo.jsx';
 import SocialProfiles from './SocialProfiles.jsx';
 import SectionModal from './SectionModal.jsx';
+import JourneyTimeline from './JourneyTimeline.jsx';
+import { experience } from '../data/experience.js';
 import './portfolio-explorer.css';
 
 function EmptyState({ title = 'More of the story is on its way.', children }) {
@@ -21,9 +23,9 @@ function EmptyState({ title = 'More of the story is on its way.', children }) {
 function About() {
   const { t } = useLanguage();
   return <div className="about"><h2 id="section-heading">{t("Engineering.")}<br /><span className="muted">{t("With a human side.")}</span></h2>
-    <p className="body-copy">{t(profile.biography)}</p>
+    <p className="profile-full-name">{profile.fullName}</p><p className="body-copy">{t(profile.biography)}</p><p className="body-copy profile-background">{t(profile.background)}</p>
     <dl className="profile-facts"><div><dt>{t("BASED IN")}</dt><dd>{profile.location}</dd></div><div><dt>{t("LANGUAGES")}</dt><dd>{profile.languages.map(item => t(item)).join(' & ')}</dd></div><div><dt>{t("FOCUS")}</dt><dd>{t(profile.role)}</dd></div></dl>
-    <div className="related-links"><a href="#skills">{t("Explore my toolbox ")}<Arrow diagonal /></a><a href="#work">{t("Discover my work ")}<Arrow diagonal /></a></div>
+    <div className="related-links"><a href="#journey/experience">{t("Explore my experience")} <Arrow diagonal /></a><a href="#skills">{t("Explore my toolbox ")}<Arrow diagonal /></a><a href="#work">{t("Discover my work ")}<Arrow diagonal /></a></div>
   </div>;
 }
 
@@ -41,23 +43,33 @@ function Work({ route }) {
 function SkillExplorer({ route }) {
   const { t } = useLanguage();
   const group = technologyGroups.find(g => g.id === route.group);
-  const technology = group.technologies.find(t => t.id === route.item);
-  if (technology) return <div className="technology-detail"><a className="breadcrumb" href={`#skills/${group.id}`}>← {t(group.label)}</a><p className="eyebrow">{t('TECH STACK')} / {t(group.label)}</p><h2 id="section-heading"><TechnologyLogo name={technology.name} />{technology.name}</h2><p className="section-lead">{t(technology.description, { name: technology.name })}</p>
-    <details className="detail-block" open><summary>{t("Connected projects")}</summary>{technology.projectIds.length ? technology.projectIds.map(id => { const project = projects.find(p => p.id === id); return <a className="related-project" key={id} href={`#work/${id}`}><span><strong>{t(project.title)}</strong><small>{t(project.status)}</small></span><Arrow diagonal /></a>; }) : <p className="detail-help">{t("Related project and experience details haven’t been added yet.")}</p>}</details>
+  const technology = group.technologies.find(item => item.id === route.item);
+  if (technology) return <div className="technology-detail">
+    <a className="breadcrumb" href={`#skills/${group.id}`}>← {t(group.label)}</a>
+    <p className="eyebrow">{t('TECH STACK')} / {t(group.label)}</p>
+    <h2 id="section-heading"><TechnologyLogo name={technology.name} symbol={technology.symbol} />{t(technology.label)}</h2>
+    <p className="section-lead">{t(technology.description)}</p>
+    {technology.experienceIds.length > 0 && <details className="detail-block" open><summary>{t('Related experience')}</summary>
+      {technology.experienceIds.map(id => { const entry = experience.find(item => item.id === id); return <a className="related-project" key={id} href={`#journey/experience/${id}`}><span><strong>{entry.organization}</strong><small>{t(entry.title)} · {t(entry.period)}</small></span><Arrow diagonal /></a>; })}
+    </details>}
+    {technology.projectIds.length > 0 && <details className="detail-block" open><summary>{t('Connected projects')}</summary>
+      {technology.projectIds.map(id => { const project = projects.find(item => item.id === id); return <a className="related-project" key={id} href={`#work/${id}`}><span><strong>{t(project.title)}</strong><small>{t(project.status)}</small></span><Arrow diagonal /></a>; })}
+    </details>}
   </div>;
-  return <div className="skill-explorer"><h2 id="section-heading">{t("My ")}<span className="muted">{t("toolbox.")}</span></h2><p className="section-lead">{t("Choose a group, then a technology to discover where it fits.")}</p>
-    <SectionTabs groups={technologyGroups} selectedId={group.id} base="skills" label={t("Technology categories")} />
+  return <div className="skill-explorer"><h2 id="section-heading">{t('My ')}<span className="muted">{t('toolbox.')}</span></h2><p className="section-lead">{t('Choose a group, then a technology to discover where it fits.')}</p>
+    <SectionTabs groups={technologyGroups} selectedId={group.id} base="skills" label={t('Technology categories')} />
     {technologyGroups.map(g => <div key={g.id} id={`panel-${g.id}`} role="tabpanel" aria-labelledby={`tab-${g.id}`} tabIndex={0} hidden={group.id !== g.id}>
-      {g.technologies.length ? <ul className="technology-grid">{g.technologies.map(tech => <li key={tech.id}><a href={`#skills/${g.id}/${tech.id}`}><span className="technology-name"><TechnologyLogo name={tech.name} />{tech.name}</span><Arrow diagonal /></a></li>)}</ul> : <EmptyState title={t("A space for AI exploration.")}>{t(g.status)}</EmptyState>}
+      <p className="skill-group-description">{t(g.description)}</p>
+      <ul className="technology-grid">{g.technologies.map(tech => <li key={tech.id}><a href={`#skills/${g.id}/${tech.id}`}><span className="technology-name"><TechnologyLogo name={tech.name} symbol={tech.symbol} />{t(tech.label)}</span><Arrow diagonal /></a></li>)}</ul>
     </div>)}
   </div>;
 }
 
 function Journey({ route }) {
   const { t } = useLanguage();
-  return <div><h2 id="section-heading">{t("The journey ")}<span className="muted">{t("so far.")}</span></h2><p className="section-lead">{t("Experience, learning, and the milestones along the way.")}</p><SectionTabs groups={journeyGroups} selectedId={route.group} base="journey" label={t("Journey categories")} />
+  return <div><h2 id="section-heading">{t('The journey ')}<span className="muted">{t('so far.')}</span></h2><p className="section-lead">{t('Experience, learning, and the milestones along the way.')}</p><SectionTabs groups={journeyGroups} selectedId={route.group} base="journey" label={t('Journey categories')} />
     {journeyGroups.map(group => <div id={`panel-${group.id}`} role="tabpanel" aria-labelledby={`tab-${group.id}`} tabIndex={0} hidden={route.group !== group.id} key={group.id}>
-      {group.entries.length ? <ol className="journey-timeline">{group.entries.map(entry => <li key={entry.id}><details><summary>{t(entry.title)}<span>{entry.period}</span></summary><p>{entry.organization}</p><p>{t(entry.summary)}</p><ul>{entry.details?.map(detail => <li key={detail}>{t(detail)}</li>)}</ul></details></li>)}</ol> : <EmptyState title={t('{category}, in time.', { category: t(group.label) })}>{t(group.description)}</EmptyState>}
+      {group.entries.length ? <JourneyTimeline group={group} selectedId={route.group === group.id ? route.item : undefined} /> : <EmptyState title={t('{category}, in time.', { category: t(group.label) })}>{t(group.description)}</EmptyState>}
     </div>)}
   </div>;
 }
@@ -69,7 +81,7 @@ function Communities() {
 
 function Contact() {
   const { t } = useLanguage();
-  return <div className="contact-panel"><h2 id="section-heading">{t("Have something")}<br />{t("in ")}<span className="muted">{t("mind?")}</span></h2><p className="section-lead">{t("A project, an idea, or just a hello. Let’s start a conversation.")}</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<Arrow diagonal /></a><span className="contact-note">{t("Opens your email app")}</span>
+  return <div className="contact-panel"><h2 id="section-heading">{t("Have something")}<br />{t("in ")}<span className="muted">{t("mind?")}</span></h2><p className="section-lead">{t("A project, an idea, or just a hello. Let’s start a conversation.")}</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<Arrow diagonal /></a><span className="contact-note">{t("Opens your email app")}</span><a className="phone-link" href={profile.phoneHref}>{t("Phone")}: {profile.phone}</a>
     <details className="detail-block" open><summary>{t("Social profiles")}</summary><SocialProfiles /></details>
     <details className="detail-block" open><summary>{t("Find the work")}</summary><a className="related-project" href={profile.github} target="_blank" rel="noreferrer"><span><strong>{t("Portfolio on GitHub")}</strong><small>{t("Explore the source · opens in a new tab")}</small></span><Arrow diagonal /></a></details>
     <div className="contact-pending"><span>{t("Résumé")}</span><p>{t("A downloadable résumé is coming soon.")}</p></div>

@@ -9,7 +9,7 @@ export function resolvePortfolioLocation(hash) {
   try { anchor = decodeURIComponent(hash.replace(/^#/, '')) || 'home'; }
   catch { return { section: 'missing', anchor: 'invalid-link' }; }
   const aliases = { overview: 'home', projects: 'work', technology: 'skills', connect: 'contact', experience: 'journey/experience', education: 'journey/education', certifications: 'journey/certifications', recognition: 'journey/recognition' };
-  const canonical = Object.hasOwn(aliases, anchor) ? aliases[anchor] : anchor;
+  const canonical = anchor === 'skills/backend/mysql' ? 'skills/data/mysql' : Object.hasOwn(aliases, anchor) ? aliases[anchor] : anchor;
   const [section, group, item, extra] = canonical.split('/');
   const route = { section, group, item, anchor };
   if (extra !== undefined) return { ...route, section: 'missing' };
@@ -19,7 +19,10 @@ export function resolvePortfolioLocation(hash) {
     const technologyGroup = technologyGroups.find(g => g.id === (group || 'frontend'));
     if (technologyGroup && (item === undefined || technologyGroup.technologies.some(t => t.id === item))) return { ...route, group: technologyGroup.id };
   }
-  if (section === 'journey' && item === undefined && journeyGroups.some(g => g.id === (group || 'experience'))) return { ...route, group: group || 'experience' };
+  if (section === 'journey') {
+    const journeyGroup = journeyGroups.find(g => g.id === (group || 'experience'));
+    if (journeyGroup && (item === undefined || journeyGroup.entries.some(entry => entry.id === item))) return { ...route, group: journeyGroup.id };
+  }
   return { ...route, section: 'missing' };
 }
 

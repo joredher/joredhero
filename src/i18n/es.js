@@ -1,6 +1,13 @@
 // English copy is the source key. Brand names and stable URL IDs stay unchanged.
 // Add a translation here whenever new public copy is added to the content files.
 export const spanish = {
+  'English — Upper-Intermediate (B2+)': 'Inglés — Intermedio alto (B2+)',
+  'Explore my experience': 'Explora mi experiencia',
+  'Related experience': 'Experiencia relacionada',
+  'Technologies used': 'Tecnologías utilizadas',
+  'Part-time': 'Tiempo parcial',
+  'Open this entry': 'Abrir este registro',
+  'Phone': 'Teléfono',
   'Language': 'Idioma',
   'Close': 'Cerrar', 'Let’s talk': 'Hablemos',
   'Jorge Hernández, home': 'Jorge Hernández, inicio',
