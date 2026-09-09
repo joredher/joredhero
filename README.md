@@ -1,4 +1,4 @@
-# Eduardo Hernández — portfolio
+# Jorge Hernández — portfolio
 
 A React portfolio, developed one visual iteration at a time. The first preview
 reinterprets the supplied blue landing-page PDF with a dark background, blue

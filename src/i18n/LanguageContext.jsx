@@ -16,10 +16,10 @@ export function LanguageProvider({ children }) {
   }
   useEffect(() => {
     document.documentElement.lang = language === 'es' ? 'es-CO' : 'en-AU';
-    document.title = `Eduardo Hernández — ${language === 'es' ? 'Portafolio' : 'Portfolio'}`;
+    document.title = `Jorge Hernández — ${language === 'es' ? 'Portafolio' : 'Portfolio'}`;
     document.querySelector('meta[name="description"]')?.setAttribute('content', language === 'es'
-      ? 'Eduardo Hernández — ingeniero de sistemas. Un portafolio en evolución.'
-      : 'Eduardo Hernández — systems engineer. A portfolio in progress.');
+      ? 'Jorge Hernández — ingeniero de sistemas. Un portafolio en evolución.'
+      : 'Jorge Hernández — systems engineer. A portfolio in progress.');
     try { localStorage.setItem(storageKey, language); } catch { /* Language still works when storage is unavailable. */ }
   }, [language]);
   return <LanguageContext.Provider value={{ language, setLanguage, t }}>{children}</LanguageContext.Provider>;
