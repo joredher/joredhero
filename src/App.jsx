@@ -19,12 +19,36 @@ function Header({ active }) {
       menuButton.current?.focus();
     }
   }}>
-    <a className="wordmark" href="#home" aria-label={t("Eduardo Hernández, home")} onClick={closeMenu}>eh<span>.</span></a>
-    <button ref={menuButton} className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? t('Close') : t('Menu')}<span aria-hidden="true">{menuOpen ? '−' : '+'}</span></button>
-    <nav id="main-navigation" aria-label={t("Main navigation")} className={menuOpen ? 'navigation is-open' : 'navigation'}>
-      {navigation.map(({ id, label }, index) => <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} onClick={closeMenu}><span className="nav-number">0{index + 1}</span>{t(label)}</a>)}
+    <a className="wordmark"
+      href="#home"
+      aria-label={t("Jorge Hernández, home")} 
+      onClick={closeMenu}>
+        eh<span>.</span>
+    </a>
+    <button ref={menuButton} 
+      className="menu-toggle"
+      aria-expanded={menuOpen} 
+      aria-controls="main-navigation" 
+      onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? t('Close') : t('Menu')}
+        <span aria-hidden="true">{menuOpen ? '−' : '+'}</span>
+    </button>
+    <nav id="main-navigation"
+      aria-label={t("Main navigation")}
+      className={menuOpen ? 'navigation is-open' : 'navigation'}>
+      {navigation.map(({ id, label }, index) => 
+        <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} 
+        onClick={closeMenu}>
+          <span className="nav-number">
+            0{index + 1}</span>{t(label)}
+        </a>)}
     </nav>
-    <div className="header-actions"><LanguageSwitcher /><a className="header-contact" href="#contact">{t("Let’s talk")} <Arrow diagonal /></a></div>
+    <div className="header-actions">
+      <LanguageSwitcher />
+      <a className="header-contact" href="#contact">
+        {t("Let’s talk")} <Arrow diagonal />
+      </a>
+    </div>
   </header>;
 }
 
@@ -47,8 +71,22 @@ export default function App() {
     return () => cancelAnimationFrame(frame);
   }, [route]);
   const active = navigation.some(item => item.id === route.section) ? route.section : 'overview';
-  return <><a className="skip-link" href="#overview">{t("Skip to portfolio content")}</a><Header active={active} />
-    <main id="main"><ProfileHero route={route} /><PortfolioExplorer route={route} /></main>
-    <footer className="site-footer"><a className="wordmark" href="#home" aria-label={t("Back to top")}>eh<span>.</span></a><p>© {new Date().getFullYear()} {profile.name}</p><SocialProfiles /><a href="#home">{t("Back to top ↑")}</a></footer>
+  return <>
+    <a className="skip-link" href="#overview">
+      {t("Skip to portfolio content")}
+    </a>
+    <Header active={active} />
+    <main id="main">
+      <ProfileHero route={route} />
+      <PortfolioExplorer route={route} />
+    </main>
+    <footer className="site-footer">
+      <a className="wordmark" href="#home" aria-label={t("Back to top")}>
+        eh<span>.</span>
+      </a>
+      <p>© {new Date().getFullYear()} {profile.name}</p>
+      <SocialProfiles />
+      <a href="#home">{t("Back to top ↑")}</a>
+    </footer>
   </>;
 }
