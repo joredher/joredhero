@@ -28,8 +28,8 @@
 .profile-map .map-portrait { grid-column: 2; grid-row: 1 / 4; padding: 0; min-width: 0; align-self: center; }
 .profile-map .profile-outline { inset: 6px -11px 58px; transform: rotate(-5deg); }
 .profile-map .profile-halo { inset: -50px -65px 0; }
-.profile-map .profile-image-link { max-width: none; }
-.profile-map .profile-image-caption { font-size: 10px; min-height: 45px; padding-top: 13px; }
+.profile-map .profile-carousel { max-width: none; }
+.profile-map .profile-carousel-caption { font-size: 10px; min-height: 45px; padding-top: 13px; }
 
 .interactive-node {
   position: relative;
@@ -47,9 +47,13 @@
   text-align: left;
   gap: 12px;
   transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  --float-distance: 7px;
+  animation: gentle-float 4s ease-in-out infinite;
+  animation-delay: calc((var(--node-row) - 1) * .4s);
 }
+.interactive-node:hover, .interactive-node:focus-visible { animation-play-state: paused; }
 .node-left { grid-column: 1; }
-.node-right { grid-column: 3; }
+.node-right { grid-column: 3; animation-delay: calc((var(--node-row) - 1) * .4s + .2s); }
 .node-icon { display: grid; place-items: center; flex: 0 0 31px; height: 33px; background: #253b603d; color: #8aacf3; border-radius: 6px; }
 .node-icon svg { width: 20px; height: 20px; }
 .node-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
@@ -88,7 +92,7 @@
   .profile-map { max-width: 580px; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 13px; }
   .profile-map .map-portrait { grid-column: 1 / -1; grid-row: 1; width: min(290px, 82%); justify-self: center; margin: 3px 0 18px; }
   .profile-map .profile-halo { inset-inline: -15px; }
-  .interactive-node { grid-column: auto; grid-row: auto; min-height: 91px; padding: 15px 12px; gap: 10px; }
+  .interactive-node { grid-column: auto; grid-row: auto; min-height: 91px; padding: 15px 12px; gap: 10px; animation: none; }
   .node-connector { display: none; }
   .node-number { font-size: 7px; }
   .map-overline { margin-bottom: 25px; }
@@ -114,4 +118,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .interactive-node, .node-connector { transition: none; }
+  .interactive-node { animation: none; }
 }

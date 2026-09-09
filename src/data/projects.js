@@ -13,7 +13,7 @@ export const projects = [{
   ],
   features: [
     'A photo-centered map with six professional categories.',
-    'Shared sections reached from the map or a conventional overview.',
+    'Shared sections that open as overlays from the map, each with its own link.',
     'Responsive layouts, keyboard navigation and reduced-motion support.',
     'Section and detail links that work with browser history.',
   ],
