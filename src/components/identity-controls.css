@@ -1,0 +1,37 @@
+.header-actions { display: flex; align-items: center; gap: 24px; }
+.language-switcher { display: flex; align-items: center; padding: 3px; border: 1px solid #394760; border-radius: 7px; gap: 2px; flex-shrink: 0; }
+.language-switcher button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; padding: 7px 10px; border: 1px solid transparent; border-radius: 4px; font-size: 11px; color: #b6c4da; }
+.language-switcher button[aria-pressed=true] { background: #23385a; border-color: #5479b7; color: white; }
+.language-switcher button:hover { background: #24334b; }
+.language-switcher img { object-fit: cover; border-radius: 2px; }
+.social-profiles { display: flex; flex-wrap: wrap; gap: 12px; }
+.social-profiles a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid #405573; border-radius: 6px; padding: 10px 13px; font-size: 12px; }
+.social-profiles a:hover { background: #21314a; border-color: #7398da; }
+.social-profiles svg { width: 22px; height: 22px; color: #e69fbf; }
+.social-icon { object-fit: contain; }
+.social-icon-github { filter: invert(1); }
+.site-footer .social-profiles { margin-left: auto; }
+.technology-logo { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
+.technology-name { display: inline-flex; align-items: center; gap: 13px; }
+.project-tags li { display: inline-flex; align-items: center; gap: 7px; }
+.project-tags .technology-logo { width: 18px; height: 18px; }
+.technology-links a { gap: 10px; }
+.technology-detail h2 { display: flex; align-items: center; gap: 15px; }
+.technology-detail h2 .technology-logo { width: 42px; height: 42px; }
+@media (min-width: 761px) and (max-width: 1150px) {
+  .navigation { gap: 17px; }
+  .nav-number, .header-contact { display: none; }
+}
+@media (max-width: 760px) {
+  .site-header { gap: 12px; }
+  .header-actions { gap: 8px; margin-left: auto; }
+  .menu-toggle { order: 3; }
+  .language-switcher button { padding: 6px 7px; gap: 5px; }
+  .language-switcher img { width: 21px; height: 16px; }
+  .site-footer .social-profiles { margin: 0; flex-basis: 100%; }
+}
+@media (max-width: 360px) {
+  .site-header { gap: 8px; padding-inline: 16px; }
+  .language-switcher button { padding-inline: 5px; }
+  .menu-toggle { gap: 10px; padding-inline: 10px; }
+}
