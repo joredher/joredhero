@@ -1,6 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import Arrow from './Arrow.jsx';
-import { profile } from '../content.js';
+import { profile } from '../data/profile.js';
 import TechnologyLogo from './TechnologyLogo.jsx';
 
 export function ProjectArtwork() {

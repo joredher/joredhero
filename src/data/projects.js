@@ -1,4 +1,4 @@
-import { profile } from '../content.js';
+import { profile } from './profile.js';
 
 export const projects = [{
   id: 'portfolio',

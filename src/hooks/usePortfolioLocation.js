@@ -27,8 +27,11 @@ export function resolvePortfolioLocation(hash) {
 }
 
 export default function usePortfolioLocation() {
-  const [route, setRoute] = useState(() => resolvePortfolioLocation(window.location.hash));
+  // Starts from an empty hash (matching what a build-time prerender always sees) so
+  // hydration never mismatches; the real hash is applied right after mount below.
+  const [route, setRoute] = useState(() => resolvePortfolioLocation(''));
   useEffect(() => {
+    setRoute(resolvePortfolioLocation(window.location.hash));
     const onHashChange = () => setRoute(resolvePortfolioLocation(window.location.hash));
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);

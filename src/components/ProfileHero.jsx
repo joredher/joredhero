@@ -1,5 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import { profile } from '../content.js';
+import { profile } from '../data/profile.js';
 import ProfileMap from './ProfileMap.jsx';
 import './profile-hero.css';
 
