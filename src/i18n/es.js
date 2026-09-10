@@ -55,7 +55,7 @@ export const spanish = {
   'Have something': '¿Tienes algo', 'in': 'en', 'mind?': 'mente?', 'A project, an idea, or just a hello. Let’s start a conversation.': 'Un proyecto, una idea o simplemente un saludo. Conversemos.',
   'Opens your email app': 'Abre tu aplicación de correo', 'Social profiles': 'Redes sociales', 'opens in a new tab': 'se abre en una pestaña nueva',
   'Find the work': 'Explora el proyecto', 'Portfolio on GitHub': 'Portafolio en GitHub', 'Explore the source · opens in a new tab': 'Explora el código · se abre en una pestaña nueva',
-  'Résumé': 'Hoja de vida', 'A downloadable résumé is coming soon.': 'Próximamente podrás descargar mi hoja de vida.',
+  'Résumé': 'Hoja de vida', 'Download résumé (PDF)': 'Descargar hoja de vida (PDF)',
   'Copy section link': 'Copiar enlace de la sección', 'Link copied': 'Enlace copiado', 'Select and copy this address': 'Selecciona y copia esta dirección', 'Section address': 'Dirección de la sección',
   'Portfolio sections': 'Secciones del portafolio',
   'Let’s find your way back.': 'Volvamos al camino.', 'That section or detail isn’t available. Choose a dimension from the map.': 'Esa sección o detalle no está disponible. Elige una dimensión desde el mapa.', 'Back to the map': 'Volver al mapa',
