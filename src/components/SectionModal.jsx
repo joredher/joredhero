@@ -53,6 +53,8 @@ export default function SectionModal({ route, selected, children }) {
       return;
     }
     target.focus({ preventScroll: true });
+    // New résumé detail links should start at the top of the scrollable content.
+    target.closest('.section-modal-body')?.scrollTo({ top: 0, behavior: 'instant' });
   }, [mounted, route]);
 
   function close() { window.location.hash = '#home'; }
