@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { profile } from './data/profile.js';
 import Arrow from './components/Arrow.jsx';
 import LanguageSwitcher from './components/LanguageSwitcher.jsx';
+import ResumeDownload from './components/ResumeDownload.jsx';
 import SocialProfiles from './components/SocialProfiles.jsx';
 import ProfileHero from './components/ProfileHero.jsx';
 import PortfolioExplorer from './components/PortfolioExplorer.jsx';
@@ -20,6 +21,7 @@ function Header({ inert }) {
     </a>
     <div className="header-actions">
       <LanguageSwitcher />
+      <ResumeDownload />
       <a className="header-contact" href="#contact">
         {t("Let’s talk")} <Arrow diagonal />
       </a>
