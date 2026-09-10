@@ -5,6 +5,7 @@ import { experience } from '../src/data/experience.js';
 import { journeyGroups } from '../src/data/journey.js';
 import { technologyGroups, technologyHref } from '../src/data/technologies.js';
 import { projects } from '../src/data/projects.js';
+import { personalityProfiles } from '../src/data/personalityProfiles.js';
 import { resolvePortfolioLocation } from '../src/hooks/usePortfolioLocation.js';
 
 test('every résumé technology link and related record resolves to real content', () => {
@@ -37,7 +38,7 @@ test('all new bilingual records contain both languages', () => {
       bilingualRecords++;
     } else Object.values(value).forEach(check);
   }
-  [profile, journeyGroups, technologyGroups].forEach(check);
+  [profile, journeyGroups, technologyGroups, personalityProfiles].forEach(check);
   assert.ok(bilingualRecords > 0);
 });
 
