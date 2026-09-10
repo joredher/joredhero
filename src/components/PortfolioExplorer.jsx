@@ -10,6 +10,7 @@ import SectionTabs from './SectionTabs.jsx';
 import Arrow from './Arrow.jsx';
 import TechnologyLogo from './TechnologyLogo.jsx';
 import SocialProfiles from './SocialProfiles.jsx';
+import CommunityCard from './CommunityCard.jsx';
 import SectionModal from './SectionModal.jsx';
 import JourneyTimeline from './JourneyTimeline.jsx';
 import { experience } from '../data/experience.js';
@@ -76,12 +77,12 @@ function Journey({ route }) {
 
 function Communities() {
   const { t } = useLanguage();
-  return <div><h2 id="section-heading">{t("Building ")}<span className="muted">{t("with others.")}</span></h2><p className="section-lead">{t("The people, events, and contributions that connect the work.")}</p>{communities.length ? communities.map(community => <details className="community-card" key={community.id}><summary>{community.name}</summary><p>{t(community.description)}</p></details>) : <EmptyState title={t("More connections to share.")}>{t("Community participation and contributions will appear here as I add more of my story.")}</EmptyState>}</div>;
+  return <div><h2 id="section-heading">{t("Building ")}<span className="muted">{t("with others.")}</span></h2><p className="section-lead">{t("The people, events, and contributions that connect the work.")}</p>{communities.length ? communities.map(community => <CommunityCard key={community.id} community={community} />) : <EmptyState title={t("More connections to share.")}>{t("Community participation and contributions will appear here as I add more of my story.")}</EmptyState>}</div>;
 }
 
 function Contact() {
   const { t } = useLanguage();
-  return <div className="contact-panel"><h2 id="section-heading">{t("Have something")}<br />{t("in ")}<span className="muted">{t("mind?")}</span></h2><p className="section-lead">{t("A project, an idea, or just a hello. Let’s start a conversation.")}</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<Arrow diagonal /></a><span className="contact-note">{t("Opens your email app")}</span><a className="phone-link" href={profile.phoneHref}>{t("Phone")}: {profile.phone}</a>
+  return <div className="contact-panel"><h2 id="section-heading">{t("Have something")}<br />{t("in ")}<span className="muted">{t("mind?")}</span></h2><p className="section-lead">{t("A project, an idea, or just a hello. Let’s start a conversation.")}</p><a className="email-link" href={`mailto:${profile.email}`}>{profile.email}<Arrow diagonal /></a><span className="contact-note">{t("Opens your email app")}</span>
     <details className="detail-block" open><summary>{t("Social profiles")}</summary><SocialProfiles /></details>
     <details className="detail-block" open><summary>{t("Find the work")}</summary><a className="related-project" href={profile.github} target="_blank" rel="noreferrer"><span><strong>{t("Portfolio on GitHub")}</strong><small>{t("Explore the source · opens in a new tab")}</small></span><Arrow diagonal /></a></details>
     <div className="contact-pending"><span>{t("Résumé")}</span><p>{t("A downloadable résumé is coming soon.")}</p></div>

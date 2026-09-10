@@ -7,5 +7,4 @@ export const journeyGroups = [
   { id: 'certifications', label: 'Certifications', entries: certifications },
   { id: 'recognition', label: 'Recognition', description: 'Professional recognition and achievements will be collected here.', entries: [] },
 ];
-// No community memberships or awards have been supplied.
-export const communities = [];
+export { communities } from './communities.js';

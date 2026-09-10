@@ -1,6 +1,7 @@
 // Profile updated from the owner-supplied 2026 résumé.
 export const profile = {
   name: 'Jorge Hernández',
+  monogram: 'eo',
   fullName: 'Jorge Eduardo Hernandez Oropeza',
   role: { en: 'Software Engineer | Full Stack & Backend Developer', es: 'Ingeniero de software | Desarrollador full stack y backend' },
   location: 'Yopal, Casanare, Colombia',

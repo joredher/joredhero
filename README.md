@@ -33,10 +33,10 @@ npm run preview  # local preview of the production build
 | `src/content.js` | Name, role, biography, background, languages and contact information |
 | `src/data/experience.js` | Employment dates, organisations, responsibilities and technologies |
 | `src/data/education.js` | Education and programming certification |
-| `src/data/journey.js` | Journey groups and currently empty recognition/community collections |
+| `src/data/journey.js` | Journey groups and currently empty recognition records |
 | `src/data/technologies.js` | Skill groups, descriptions and related experience/project connections |
 | `src/data/projects.js` | Project descriptions, features and source links |
-| `src/data/socialLinks.js` | LinkedIn, Instagram and GitHub profiles |
+| `src/data/socialLinks.js` | Icon-only LinkedIn, Instagram, GitHub and WhatsApp links |
 | `src/data/profileCategories.js` | Six landing-page category labels and destinations |
 | `src/data/profilePhotos.js` | Photo files, alternative text and positioning |
 
@@ -68,7 +68,7 @@ Dates, concurrent roles, part-time labels and the English B2+ level are preserve
 as supplied. The profile retains the résumé's “over five years” wording; overlapping
 jobs are not added together to calculate experience. Institution names follow the
 résumé. The UNAB/MINTIC training appears once under Certifications. No verification
-URL was supplied. Recognition and Communities remain empty.
+URL was supplied. Recognition remains empty.
 
 Blade is grouped with the Laravel backend, separately from Vue. AWS service cards
 use the AWS logo; Blade uses Laravel's logo. OpenVidu/WebRTC and non-branded concepts
@@ -77,7 +77,7 @@ claiming model-development experience. The portrait carousel and floating map re
 as implemented on `master`.
 
 The original résumé PDF is not bundled as a public download in this content update.
-The contact section includes the supplied email, phone and confirmed social links.
+The contact section includes email and icon-only social links. WhatsApp opens a chat with the supplied number; the phone number is not shown as a separate line.
 Company work is described in Journey; no unpublished company repositories, demos,
 metrics or client project cards are invented.
 
@@ -116,3 +116,13 @@ See `THIRD_PARTY_NOTICES.md` for logo and flag sources and licenses. Typography 
 Google Fonts with local sans-serif fallbacks. No new runtime dependencies are needed
 for the résumé update. There is no authentication, analytics or contact-form backend.
 Pushing source code to GitHub does not deploy the website.
+
+## Community and monogram
+
+Casanare Devs appears in Communities with its locally stored official logo and a link
+to https://casanare.dev/members. Community records live in src/data/communities.js;
+logo mappings live in CommunityCard.jsx. No leadership role or event history is claimed.
+
+The shared monogram is eo. (Eduardo Oropeza); the hero continues to display Jorge
+Hernández. Social links show logos only, with accessible names, hover titles, and
+46px touch targets in Contact and the footer.

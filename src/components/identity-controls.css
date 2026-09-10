@@ -7,7 +7,7 @@
 .language-switcher button:hover { background: #24334b; }
 .language-switcher img { object-fit: cover; border-radius: 2px; }
 .social-profiles { display: flex; flex-wrap: wrap; gap: 12px; }
-.social-profiles a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid #405573; border-radius: 6px; padding: 10px 13px; font-size: 12px; }
+.social-profiles a { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border: 1px solid #405573; border-radius: 8px; padding: 10px; }
 .social-profiles a:hover { background: #21314a; border-color: #7398da; }
 .social-profiles svg { width: 22px; height: 22px; color: #e69fbf; }
 .social-icon { object-fit: contain; }

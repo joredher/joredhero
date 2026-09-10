@@ -14,7 +14,7 @@ function Header({ inert }) {
     <a className="wordmark"
       href="#home"
       aria-label={t("Jorge Hernández, home")}>
-        eh<span>.</span>
+        {profile.monogram}<span>.</span>
     </a>
     <div className="header-actions">
       <LanguageSwitcher />
@@ -44,7 +44,7 @@ export default function App() {
     <PortfolioExplorer route={route} />
     <footer className="site-footer" inert={sectionOpen}>
       <a className="wordmark" href="#home" aria-label={t("Back to top")}>
-        eh<span>.</span>
+        {profile.monogram}<span>.</span>
       </a>
       <p>© {new Date().getFullYear()} {profile.name}</p>
       <SocialProfiles />
