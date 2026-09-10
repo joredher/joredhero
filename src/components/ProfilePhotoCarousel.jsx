@@ -2,6 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useEffect, useRef, useState } from 'react';
 import Arrow from './Arrow.jsx';
 import { prefersReducedMotion } from '../utils/motion.js';
+import { useProfilePanel } from '../hooks/useProfilePanel.jsx';
 
 const ADVANCE_MS = 4000;
 const TRANSITION_MS = 700;
@@ -9,6 +10,7 @@ const LERP = 0.06;
 
 export default function ProfilePhotoCarousel({ photos, name }) {
   const { t } = useLanguage();
+  const { isOpen, open } = useProfilePanel();
   const frame = useRef(null);
   const motionPreference = useRef(null);
   const current = useRef({ x: 0, y: 0 });
@@ -72,7 +74,8 @@ export default function ProfilePhotoCarousel({ photos, name }) {
   }
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    // Paused while the detail panel is open, so the active photo can't change out from under it.
+    if (prefersReducedMotion() || isOpen) return;
     let interval = setInterval(advance, ADVANCE_MS);
     function handleVisibility() {
       clearInterval(interval);
@@ -84,19 +87,19 @@ export default function ProfilePhotoCarousel({ photos, name }) {
       document.removeEventListener('visibilitychange', handleVisibility);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => () => clearTimeout(exitTimeout.current), []);
 
   return <button
     type="button"
     className="profile-carousel"
-    aria-label={t('Show the next photo of {name}', { name })}
+    aria-label={t('Discover more about {name}', { name })}
     onPointerMove={handlePointerMove}
     onPointerLeave={resetTilt}
     onPointerCancel={resetTilt}
     onBlur={resetTilt}
-    onClick={advance}
+    onClick={() => open(photos[activeIndex].id)}
   >
     <div ref={frame} className="profile-frame">
       {photos.map((photo, index) => {
@@ -109,6 +112,6 @@ export default function ProfilePhotoCarousel({ photos, name }) {
         {photos.map((photo, index) => <span key={photo.id} className={index === activeIndex ? 'is-active' : ''} />)}
       </span>
     </div>
-    <span className="profile-carousel-caption"><span>{t('Next photo')}</span><Arrow /></span>
+    <span className="profile-carousel-caption"><span>{t('Discover more')}</span><Arrow /></span>
   </button>;
 }
