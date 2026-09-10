@@ -30,7 +30,7 @@ npm run preview  # local preview of the production build
 
 | File | Content |
 | --- | --- |
-| `src/content.js` | Name, role, biography, background, languages and contact information |
+| `src/data/profile.js` | Name, role, biography, background, languages and contact information |
 | `src/data/experience.js` | Employment dates, organisations, responsibilities and technologies |
 | `src/data/education.js` | Education and programming certification |
 | `src/data/journey.js` | Journey groups and currently empty recognition records |

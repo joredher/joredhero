@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: replace <loc> with the real production domain once hosting is chosen. -->
+<!-- Hash-based routing means every section (#about, #work/portfolio, etc.) is the
+     same server-visible URL — only "/" is ever a distinct, indexable page. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://your-domain.example/</loc>
+  </url>
+</urlset>

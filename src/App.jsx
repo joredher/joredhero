@@ -1,6 +1,6 @@
 import { useLanguage } from './i18n/LanguageContext.jsx';
 import { useEffect } from 'react';
-import { profile } from './content.js';
+import { profile } from './data/profile.js';
 import Arrow from './components/Arrow.jsx';
 import LanguageSwitcher from './components/LanguageSwitcher.jsx';
 import SocialProfiles from './components/SocialProfiles.jsx';

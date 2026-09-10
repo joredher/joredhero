@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { profile } from '../src/content.js';
+import { profile } from '../src/data/profile.js';
 import { experience } from '../src/data/experience.js';
 import { journeyGroups } from '../src/data/journey.js';
 import { technologyGroups, technologyHref } from '../src/data/technologies.js';

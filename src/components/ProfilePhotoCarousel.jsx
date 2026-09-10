@@ -1,6 +1,7 @@
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useEffect, useRef, useState } from 'react';
 import Arrow from './Arrow.jsx';
+import { prefersReducedMotion } from '../utils/motion.js';
 
 const ADVANCE_MS = 4000;
 const TRANSITION_MS = 700;
@@ -71,7 +72,7 @@ export default function ProfilePhotoCarousel({ photos, name }) {
   }
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
     let interval = setInterval(advance, ADVANCE_MS);
     function handleVisibility() {
       clearInterval(interval);

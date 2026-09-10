@@ -2,6 +2,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { useEffect, useRef, useState } from 'react';
 import { profileCategories } from '../data/profileCategories.js';
 import Arrow from './Arrow.jsx';
+import { prefersReducedMotion } from '../utils/motion.js';
 import './section-modal.css';
 
 const EXIT_MS = 220;
@@ -16,7 +17,7 @@ export default function SectionModal({ route, selected, children }) {
   if (isOpen) lastOpenSectionRef.current = route.section;
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = prefersReducedMotion();
     if (isOpen) {
       triggerRef.current = document.activeElement;
       setMounted(true);
