@@ -6,9 +6,7 @@ import SeoSummary from './components/SeoSummary.jsx';
 import { profile } from './data/profile.js';
 import { resolveBilingual } from './i18n/bilingual.js';
 
-// TODO: replace with the real production domain once hosting is chosen (also appears
-// in index.html's canonical/og:url tags and public/robots.txt + sitemap.xml).
-const SITE_URL = 'https://your-domain.example';
+const SITE_URL = 'https://eocodey.com';
 
 // Mirrors main.jsx's tree so the prerendered markup matches the client's first render exactly.
 export function renderApp() {
