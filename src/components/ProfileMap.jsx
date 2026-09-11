@@ -9,14 +9,31 @@ import './profile-map.css';
 export default function ProfileMap({ route }) {
   const { t } = useLanguage();
   return <div className="profile-map-experience">
-    <div className="map-overline"><span>{t("EXPLORE THE CONNECTIONS")}</span><span>{t("SIX DIMENSIONS. ONE STORY.")}</span></div>
-    <nav className="profile-map" aria-label={t("Explore my professional profile")} aria-describedby="map-instructions">
-      <div className="map-portrait profile-stage">
-        <div className="profile-halo" aria-hidden="true" /><div className="profile-outline" aria-hidden="true" />
-        <ProfilePhotoCarousel photos={profilePhotos} name={profile.name} />
-      </div>
-      {profileCategories.map((category, index) => <InteractiveNode key={category.id} category={category} index={index} selected={route.section === category.section} />)}
-    </nav>
-    <p id="map-instructions" className="map-instructions"><span aria-hidden="true">↗</span>{t(" Choose a dimension to discover more.")}</p>
-  </div>;
+            <div className="map-overline">
+              <span>{t("EXPLORE THE CONNECTIONS")}</span>
+              <span>{t("SIX DIMENSIONS. ONE STORY.")}</span>
+            </div>
+            <nav className="profile-map"
+                aria-label={t("Explore my professional profile")}
+                aria-describedby="map-instructions">
+              <div className="map-portrait profile-stage">
+                <div className="profile-halo" aria-hidden="true" />
+                <div className="profile-outline" aria-hidden="true" />
+                <ProfilePhotoCarousel photos={profilePhotos} name={profile.name} />
+              </div>
+              {
+                profileCategories.map(
+                  (category, index) => 
+                    <InteractiveNode
+                      key={category.id}
+                      category={category}
+                      index={index} 
+                      selected={route.section === category.section} />)
+              }
+            </nav>
+            <p id="map-instructions" className="map-instructions">
+              <span aria-hidden="true">↗</span>
+                {t(" Choose a dimension to discover more.")}
+            </p>
+          </div>;
 }

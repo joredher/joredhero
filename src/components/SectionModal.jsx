@@ -64,21 +64,47 @@ export default function SectionModal({ route, selected, children }) {
   }
 
   if (!mounted) return null;
-  return <div className={`section-modal${entered ? ' is-open' : ''}`} onKeyDown={handleKeyDown}>
-    <div className="section-modal-backdrop" onClick={close} />
-    <div className="section-modal-panel" role="dialog" aria-modal="true" aria-labelledby="section-heading">
-      <div className="section-modal-head">
-        {selected && <p className="eyebrow explorer-section-label">{t(selected.label)}</p>}
-        <button type="button" className="section-modal-close" onClick={close}>{t('Close')}<span aria-hidden="true">×</span></button>
-      </div>
-      <nav className="explorer-navigation" aria-label={t('Portfolio sections')}>
-        {profileCategories.map((category, index) => <a key={category.id} href={`#${category.section}`} aria-current={selected?.id === category.id ? 'location' : undefined}><span>0{index + 1}</span>{t(category.label)}<Arrow diagonal /></a>)}
-      </nav>
-      <div className="section-modal-body">
-        <article id={route.anchor} tabIndex={-1} className="explorer-content" key={route.section}>
-          {children}
-        </article>
-      </div>
-    </div>
-  </div>;
+
+  return <div className={`section-modal${entered ? ' is-open' : ''}`}
+              onKeyDown={handleKeyDown}>
+            <div className="section-modal-backdrop"
+                onClick={close} />
+            <div className="section-modal-panel"
+                role="dialog"
+                aria-modal="true" 
+                aria-labelledby="section-heading">
+              <div className="section-modal-head">
+                {
+                  selected && <p className="eyebrow explorer-section-label">
+                                {t(selected.label)}</p>
+                }
+                <button type="button" 
+                        className="section-modal-close"
+                        onClick={close}>
+                          {t('Close')}
+                          <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <nav className="explorer-navigation" aria-label={t('Portfolio sections')}>
+                {
+                  profileCategories.map((category, index) => 
+                        <a key={category.id}
+                          href={`#${category.section}`} 
+                          aria-current={selected?.id === category.id ? 'location' : undefined}>
+                            <span>0{index + 1}</span>
+                            {t(category.label)}
+                            <Arrow diagonal />
+                        </a>)
+                  }
+              </nav>
+              <div className="section-modal-body">
+                <article id={route.anchor} 
+                  tabIndex={-1} 
+                  className="explorer-content" 
+                  key={route.section}>
+                  {children}
+                </article>
+              </div>
+            </div>
+          </div>;
 }

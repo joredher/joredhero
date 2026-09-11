@@ -26,7 +26,7 @@ export default function PortfolioExplorer({ route }) {
   const selected = profileCategories.find(category => category.section === route.section);
   const Section = sections[route.section];
   return <SectionModal route={route} selected={selected}>
-    {Section && <Section route={route} />}
-    <ShareSection key={route.anchor} />
-  </SectionModal>;
+            {Section && <Section route={route} />}
+            <ShareSection key={route.anchor} />
+          </SectionModal>;
 }

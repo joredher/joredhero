@@ -92,26 +92,43 @@ export default function ProfilePhotoCarousel({ photos, name }) {
   useEffect(() => () => clearTimeout(exitTimeout.current), []);
 
   return <button
-    type="button"
-    className="profile-carousel"
-    aria-label={t('Discover more about {name}', { name })}
-    onPointerMove={handlePointerMove}
-    onPointerLeave={resetTilt}
-    onPointerCancel={resetTilt}
-    onBlur={resetTilt}
-    onClick={() => open(photos[activeIndex].id)}
-  >
-    <div ref={frame} className="profile-frame">
-      {photos.map((photo, index) => {
-        const state = index === activeIndex ? 'is-active' : index === exitingIndex ? 'is-exiting' : '';
-        return <div key={photo.id} className={`profile-photo-layer ${state}`.trim()} aria-hidden={index !== activeIndex}>
-          <img src={photo.src} alt={t(photo.alt)} width={photo.width} height={photo.height} style={{ objectPosition: photo.position }} fetchPriority={index === 0 ? 'high' : 'low'} decoding="async" draggable="false" />
-        </div>;
-      })}
-      <span className="profile-carousel-dots" aria-hidden="true">
-        {photos.map((photo, index) => <span key={photo.id} className={index === activeIndex ? 'is-active' : ''} />)}
-      </span>
-    </div>
-    <span className="profile-carousel-caption"><span>{t('Discover more')}</span><Arrow /></span>
-  </button>;
+            type="button"
+            className="profile-carousel"
+            aria-label={t('Discover more about {name}', { name })}
+            onPointerMove={handlePointerMove}
+            onPointerLeave={resetTilt}
+            onPointerCancel={resetTilt}
+            onBlur={resetTilt}
+            onClick={() => open(photos[activeIndex].id)}
+          >
+            <div ref={frame} className="profile-frame">
+              {
+                photos.map((photo, index) => {
+                  const state = index === activeIndex ? 
+                    'is-active' : index === exitingIndex ? 'is-exiting' : '';
+                  return <div key={photo.id} 
+                              className={`profile-photo-layer ${state}`.trim()}
+                              aria-hidden={index !== activeIndex}>
+                           
+                            <img src={photo.src}
+                              alt={t(photo.alt)}
+                              width={photo.width}
+                              height={photo.height}
+                              style={{ objectPosition: photo.position }}
+                              fetchPriority={index === 0 ? 'high' : 'low'}
+                              decoding="async" draggable="false" />
+                          </div>;})
+              }
+              <span className="profile-carousel-dots" aria-hidden="true">
+                {
+                  photos.map((photo, index) => 
+                    <span key={photo.id}
+                          className={index === activeIndex ? 'is-active' : ''} />)
+                }
+              </span>
+            </div>
+            <span className="profile-carousel-caption">
+              <span>{t('Discover more')}</span><Arrow />
+            </span>
+          </button>;
 }
