@@ -28,9 +28,9 @@
 .section-modal-head {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
-  padding: 24px var(--page) 0;
+  padding: 14px var(--page) 0;
   flex-shrink: 0;
 }
 .section-modal-close {
@@ -38,17 +38,17 @@
   align-items: center;
   gap: 8px;
   border: 0;
-  min-height: 40px;
+  min-height: 32px;
   padding: 0 0 0 10px;
   font-size: 12px;
   color: #bdc6d6;
   flex-shrink: 0;
 }
-.section-modal-close span { font-size: 22px; font-weight: 400; line-height: 1; }
+.section-modal-close span { font-size: 20px; font-weight: 400; line-height: 1; }
 .section-modal-close:hover { color: white; }
 
-.explorer-navigation { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px var(--page); border-bottom: 1px solid #303d51; flex-shrink: 0; }
-.explorer-navigation a { display: flex; align-items: center; gap: 8px; min-height: 40px; border: 1px solid transparent; border-radius: 5px; padding: 8px 12px; font-size: 11px; color: #a7b4c8; }
+.explorer-navigation { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px var(--page); border-bottom: 1px solid #303d51; flex-shrink: 0; }
+.explorer-navigation a { display: flex; align-items: center; gap: 8px; min-height: 32px; border: 1px solid transparent; border-radius: 5px; padding: 6px 12px; font-size: 11px; color: #a7b4c8; }
 .explorer-navigation svg { display: none; }
 .explorer-navigation a:hover { color: #fff; background: #1b2639; }
 .explorer-navigation a[aria-current] { border-color: #415d88; background: #1c2d49; color: white; }
@@ -56,8 +56,8 @@
 .section-modal-body { overflow-y: auto; flex: 1 1 auto; min-width: 0; }
 
 @media (max-width: 760px) {
-  .section-modal-head { padding: 18px var(--page) 0; }
-  .explorer-navigation { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 12px var(--page); }
+  .section-modal-head { padding: 12px var(--page) 0; }
+  .explorer-navigation { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px var(--page); }
   .explorer-navigation a { padding: 8px; font-size: 10px; }
 }
 @media (max-width: 420px) {
