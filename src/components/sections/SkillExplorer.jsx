@@ -2,7 +2,6 @@ import { useLanguage } from '../../i18n/LanguageContext.jsx';
 import { technologyGroups } from '../../data/technologies.js';
 import { experience } from '../../data/experience.js';
 import { projects } from '../../data/projects.js';
-import SectionTabs from '../SectionTabs.jsx';
 import TechnologyLogo from '../TechnologyLogo.jsx';
 import Arrow from '../Arrow.jsx';
 
@@ -82,31 +81,22 @@ export default function SkillExplorer({ route }) {
             </h2>
             <p className="section-lead">
               {
-                t('Choose a group, then a technology to discover where it fits.')
+                t('Choose a technology to discover where it fits.')
               }
             </p>
-            <SectionTabs 
-              groups={technologyGroups}
-              selectedId={group.id}
-              base="skills" 
-              label={t('Technology categories')} />
-              {
-                technologyGroups.map(g => 
-                  <div key={g.id} 
-                      id={`panel-${g.id}`}
-                      role="tabpanel"
-                      aria-labelledby={`tab-${g.id}`}
-                      tabIndex={0}
-                      hidden={group.id !== g.id}>
+            {
+              technologyGroups.map(g =>
+                <section key={g.id} className="explorer-group" aria-labelledby={`group-heading-${g.id}`}>
+                  <h3 id={`group-heading-${g.id}`}>{t(g.label)}</h3>
                   <p className="skill-group-description">{t(g.description)}</p>
                   <ul className="technology-grid">
                     {
-                      g.technologies.map(tech => 
+                      g.technologies.map(tech =>
                         <li key={tech.id}>
                           <a href={`#skills/${g.id}/${tech.id}`}>
                             <span className="technology-name">
-                              <TechnologyLogo 
-                                name={tech.name} 
+                              <TechnologyLogo
+                                name={tech.name}
                                 symbol={tech.symbol} />
                                 {t(tech.label)}
                             </span>
@@ -115,6 +105,6 @@ export default function SkillExplorer({ route }) {
                         </li>)
                     }
                   </ul>
-                </div>)}
+                </section>)}
           </div>;
 }

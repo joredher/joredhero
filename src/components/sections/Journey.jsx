@@ -1,6 +1,5 @@
 import { useLanguage } from '../../i18n/LanguageContext.jsx';
 import { journeyGroups } from '../../data/journey.js';
-import SectionTabs from '../SectionTabs.jsx';
 import JourneyTimeline from '../JourneyTimeline.jsx';
 import EmptyState from './EmptyState.jsx';
 
@@ -15,33 +14,23 @@ export default function Journey({ route }) {
                 t('Experience, learning, and the milestones along the way.')
               }
             </p>
-            <SectionTabs 
-              groups={journeyGroups} 
-              selectedId={route.group} 
-              base="journey" 
-              label={t('Journey categories')} />
             {
-              journeyGroups.map(group => 
-                <div 
-                  id={`panel-${group.id}`}
-                  role="tabpanel"
-                  aria-labelledby={`tab-${group.id}`}
-                  tabIndex={0} 
-                  hidden={route.group !== group.id} 
-                  key={group.id}>
-                    {
-                      group.entries.length ? 
-                        <JourneyTimeline 
-                          group={group}
-                          selectedId={route.group === group.id ? route.item : undefined} /> 
-                          : <EmptyState 
-                              title={t('{category}, in time.', { category: t(group.label) })}>
-                                {
-                                  t(group.description)
-                                }
-                            </EmptyState>
-                    }
-                </div>)
+              journeyGroups.map(group =>
+                <section key={group.id} className="explorer-group" aria-labelledby={`group-heading-${group.id}`}>
+                  <h3 id={`group-heading-${group.id}`}>{t(group.label)}</h3>
+                  {
+                    group.entries.length ?
+                      <JourneyTimeline
+                        group={group}
+                        selectedId={route.group === group.id ? route.item : undefined} />
+                        : <EmptyState
+                            title={t('{category}, in time.', { category: t(group.label) })}>
+                              {
+                                t(group.description)
+                              }
+                          </EmptyState>
+                  }
+                </section>)
             }
           </div>;
 }

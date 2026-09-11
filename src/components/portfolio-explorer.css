@@ -1,5 +1,5 @@
 .portfolio-explorer { scroll-margin-top: 22px; min-height: 590px; }
-.explorer-content { min-width: 0; padding: 26px 28px 28px; }
+.explorer-content { min-width: 0; padding: 26px var(--page) 48px; max-width: 1400px; margin: 0 auto; }
 .explorer-section-label { font-size: 9px; color: #91b4f6; margin-bottom: 20px; }
 .explorer-content h2 { font-size: clamp(30px, 3vw, 44px); line-height: 1.25; letter-spacing: -1.6px; }
 .explorer-content h3 { font-size: 19px; font-weight: 500; line-height: 1.5; }
@@ -37,9 +37,6 @@
 .related-project strong { display: block; font-size: 14px; font-weight: 500; }
 .related-project small { display: block; margin-top: 9px; font-size: 10px; line-height: 1.6; color: #99acc9; }
 .related-project svg { color: #89aef0; }
-.section-tabs { gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
-.section-tabs a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; font-size: 12px; color: #a7b4c7; border-bottom: 2px solid transparent; }
-.section-tabs a[aria-selected=true] { color: white; border-color: var(--blue); }
 .technology-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .technology-grid a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px; min-height: 65px; border: 1px solid #34445d; background: #172238; border-radius: 6px; font-size: 13px; }
 .technology-grid a:hover { border-color: #759ee6; background: #1f3150; }
@@ -82,9 +79,8 @@
   .community-identity h3 { font-size: 25px; }
 }
 .skill-group-description { color: #a7b6ce; font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
-.skill-explorer .section-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-bottom: 0; }
-.skill-explorer .section-tabs a { padding: 10px 12px; border: 1px solid #334660; border-radius: 6px; line-height: 1.5; }
-.skill-explorer .section-tabs a[aria-selected=true] { background: #213758; border-color: #749cef; }
+.explorer-group { margin-top: 40px; padding-top: 28px; border-top: 1px solid #303d51; }
+.explorer-group:first-of-type { margin-top: 28px; padding-top: 0; border-top: 0; }
 .technology-name { min-width: 0; }
 .technology-name .technology-logo { width: 28px; height: 28px; }
 .technology-detail h2 { overflow-wrap: anywhere; }
@@ -108,8 +104,6 @@
 .journey-stack .technology-logo { width: 20px; height: 20px; }
 .entry-permalink { margin-top: 15px; margin-bottom: 0; }
 @media (max-width: 760px) {
-  .skill-explorer .section-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .skill-explorer .section-tabs a { font-size: 11px; padding: 8px; }
   .journey-timeline details { padding-inline: 13px; }
   .map-hero .eyebrow { line-height: 1.9; }
 }
@@ -119,13 +113,12 @@
   .explorer-content .mini-browser { max-width: 290px; }
 }
 @media (max-width: 760px) {
-  .explorer-content { padding: 20px 18px 22px; }
+  .explorer-content { padding: 20px var(--page) 28px; }
   .explorer-content h2 { font-size: 29px; letter-spacing: -1px; }
   .section-lead { font-size: 13px; }
   .profile-facts { grid-template-columns: 1fr; gap: 23px; }
   .technology-grid { grid-template-columns: 1fr; }
-  .section-tabs { gap: 12px 20px; }
-  .section-tabs a { font-size: 11px; }
+  .explorer-group { margin-top: 32px; padding-top: 22px; }
   .explorer-empty { padding: 22px 18px; }
   .explorer-content .project-description { padding: 24px 19px; }
   .contact-panel .email-link { font-size: 15px; }

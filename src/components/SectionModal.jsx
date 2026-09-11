@@ -48,14 +48,13 @@ export default function SectionModal({ route, selected, children }) {
     if (!mounted) return;
     const target = document.getElementById(route.anchor);
     if (!target) return;
-    // Switching a technology/journey tab should keep keyboard focus in the tablist.
-    if (document.activeElement?.getAttribute('role') === 'tab' && !route.item) {
-      target.querySelector('[role="tab"][aria-selected="true"]')?.focus({ preventScroll: true });
-      return;
-    }
     target.focus({ preventScroll: true });
-    // New résumé detail links should start at the top of the scrollable content.
-    target.closest('.section-modal-body')?.scrollTo({ top: 0, behavior: 'instant' });
+    // Skills/Journey are a flat scroll of grouped sections now (no more tabs to swap
+    // panels) — land on the matching group's heading when there is one (this lookup
+    // naturally misses for Skills' single-technology detail view, which has no headings).
+    const groupTarget = route.group && document.getElementById(`group-heading-${route.group}`);
+    if (groupTarget) groupTarget.scrollIntoView({ block: 'start', behavior: 'instant' });
+    else target.closest('.section-modal-body')?.scrollTo({ top: 0, behavior: 'instant' });
   }, [mounted, route]);
 
   function close() { window.location.hash = '#home'; }
