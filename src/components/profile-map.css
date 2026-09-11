@@ -59,7 +59,7 @@
 .node-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .node-title { font-size: 13px; font-weight: 550; line-height: 1.25; color: #e8edf6; }
 .node-hint { font-size: 9px; line-height: 1.5; color: #a4aebe; }
-.node-number { margin-left: auto; align-self: flex-start; font-size: 8px; color: #7c8eab; letter-spacing: .5px; }
+.node-number { margin-left: auto; align-self: flex-start; font-size: 6px; color: #5b6980; }
 .node-connector { position: absolute; top: 50%; width: var(--map-gap); height: 1px; background: #465f864f; pointer-events: none; transition: background 180ms ease; }
 .node-left .node-connector { left: calc(100% + 1px); }
 .node-right .node-connector { right: calc(100% + 1px); }
@@ -94,7 +94,6 @@
   .profile-map .profile-halo { inset-inline: -15px; }
   .interactive-node { grid-column: auto; grid-row: auto; min-height: 91px; padding: 15px 12px; gap: 10px; animation: none; }
   .node-connector { display: none; }
-  .node-number { font-size: 7px; }
   .map-overline { margin-bottom: 25px; }
   .map-instructions { margin-top: 21px; }
 }
