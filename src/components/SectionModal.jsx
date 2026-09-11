@@ -66,8 +66,6 @@ export default function SectionModal({ route, selected, children }) {
 
   return <div className={`section-modal${entered ? ' is-open' : ''}`}
               onKeyDown={handleKeyDown}>
-            <div className="section-modal-backdrop"
-                onClick={close} />
             <div className="section-modal-panel"
                 role="dialog"
                 aria-modal="true" 
