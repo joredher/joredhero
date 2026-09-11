@@ -1,15 +1,19 @@
 .portfolio-explorer { scroll-margin-top: 22px; min-height: 590px; }
-.explorer-content { min-width: 0; padding: 26px 28px 28px; }
+.explorer-content { min-width: 0; padding: 26px var(--page) 48px; max-width: 1400px; margin: 0 auto; }
 .explorer-section-label { font-size: 9px; color: #91b4f6; margin-bottom: 20px; }
 .explorer-content h2 { font-size: clamp(30px, 3vw, 44px); line-height: 1.25; letter-spacing: -1.6px; }
 .explorer-content h3 { font-size: 19px; font-weight: 500; line-height: 1.5; }
 .section-lead { color: #adb9cd; font-size: 14px; line-height: 1.85; max-width: 650px; margin: 21px 0 28px; }
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 300px); gap: 56px; align-items: start; }
+.about-side { padding-top: 6px; }
 .profile-facts { margin: 32px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px; }
 .profile-facts dt { font-size: 9px; letter-spacing: 1.5px; color: #8fabc9; }
 .profile-facts dd { margin: 10px 0 0; font-size: 13px; color: #d3dce9; }
+.about-side .profile-facts { grid-template-columns: 1fr; margin-top: 0; }
 .related-links { display: flex; flex-wrap: wrap; gap: 20px 30px; border-top: 1px solid #303b4d; padding-top: 24px; }
 .related-links a { display: inline-flex; align-items: center; gap: 17px; min-height: 44px; font-size: 12px; }
 .related-links svg { width: 16px; color: var(--blue); }
+.about-side .related-links { flex-direction: column; align-items: flex-start; gap: 18px; }
 .project-collection { display: grid; gap: 24px; }
 .explorer-content .project { grid-template-columns: 1fr 1fr; }
 .explorer-content .project-art { min-height: 290px; padding: 25px; }
@@ -37,10 +41,7 @@
 .related-project strong { display: block; font-size: 14px; font-weight: 500; }
 .related-project small { display: block; margin-top: 9px; font-size: 10px; line-height: 1.6; color: #99acc9; }
 .related-project svg { color: #89aef0; }
-.section-tabs { gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
-.section-tabs a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; font-size: 12px; color: #a7b4c7; border-bottom: 2px solid transparent; }
-.section-tabs a[aria-selected=true] { color: white; border-color: var(--blue); }
-.technology-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.technology-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .technology-grid a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px; min-height: 65px; border: 1px solid #34445d; background: #172238; border-radius: 6px; font-size: 13px; }
 .technology-grid a:hover { border-color: #759ee6; background: #1f3150; }
 .technology-grid svg { width: 16px; color: #87a9e2; }
@@ -82,9 +83,11 @@
   .community-identity h3 { font-size: 25px; }
 }
 .skill-group-description { color: #a7b6ce; font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
-.skill-explorer .section-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; border-bottom: 0; }
-.skill-explorer .section-tabs a { padding: 10px 12px; border: 1px solid #334660; border-radius: 6px; line-height: 1.5; }
-.skill-explorer .section-tabs a[aria-selected=true] { background: #213758; border-color: #749cef; }
+.explorer-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; margin-top: 28px; }
+.explorer-groups .explorer-group { margin-top: 0; padding: 26px; border: 1px solid #303d51; border-radius: 8px; background: #15203155; }
+/* Lets Experience (always journeyGroups[0]) run alongside Education/Certifications/Recognition
+   stacked in the other column, instead of paying for its own row — assumes exactly 4 groups. */
+.journey-explorer .explorer-group:first-child { grid-row: span 3; }
 .technology-name { min-width: 0; }
 .technology-name .technology-logo { width: 28px; height: 28px; }
 .technology-detail h2 { overflow-wrap: anywhere; }
@@ -108,8 +111,6 @@
 .journey-stack .technology-logo { width: 20px; height: 20px; }
 .entry-permalink { margin-top: 15px; margin-bottom: 0; }
 @media (max-width: 760px) {
-  .skill-explorer .section-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .skill-explorer .section-tabs a { font-size: 11px; padding: 8px; }
   .journey-timeline details { padding-inline: 13px; }
   .map-hero .eyebrow { line-height: 1.9; }
 }
@@ -117,15 +118,21 @@
   .explorer-content .project { grid-template-columns: 1fr; }
   .explorer-content .project-art { min-height: 260px; }
   .explorer-content .mini-browser { max-width: 290px; }
+  .explorer-groups { grid-template-columns: 1fr; }
+  .technology-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .journey-explorer .explorer-group:first-child { grid-row: auto; }
+  .about { grid-template-columns: 1fr; gap: 0; }
+  .about-side .profile-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-side .related-links { flex-direction: row; }
 }
 @media (max-width: 760px) {
-  .explorer-content { padding: 20px 18px 22px; }
+  .explorer-content { padding: 20px var(--page) 28px; }
   .explorer-content h2 { font-size: 29px; letter-spacing: -1px; }
   .section-lead { font-size: 13px; }
   .profile-facts { grid-template-columns: 1fr; gap: 23px; }
   .technology-grid { grid-template-columns: 1fr; }
-  .section-tabs { gap: 12px 20px; }
-  .section-tabs a { font-size: 11px; }
+  .explorer-groups { gap: 18px; }
+  .explorer-groups .explorer-group { padding: 20px; }
   .explorer-empty { padding: 22px 18px; }
   .explorer-content .project-description { padding: 24px 19px; }
   .contact-panel .email-link { font-size: 15px; }

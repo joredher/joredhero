@@ -9,6 +9,13 @@ import './profile-side-panel.css';
 
 const EXIT_MS = 260;
 
+// Splits off the description's first sentence so it can be shown as a larger lede,
+// with the rest as supporting body text — breaks up an otherwise uniform text block.
+function splitLede(text) {
+  const match = text.match(/^(.+?[.!?])\s*(.*)$/s);
+  return match ? { lede: match[1], rest: match[2] } : { lede: text, rest: '' };
+}
+
 export default function ProfileSidePanel() {
   const { t } = useLanguage();
   const { openId, isOpen, close, next, previous } = useProfilePanel();
@@ -66,12 +73,13 @@ export default function ProfileSidePanel() {
   const photo = profilePhotos.find(item => item.id === activeId);
   const story = personalityProfiles.find(item => item.id === activeId);
   if (!photo || !story) return null;
+  const { lede, rest } = splitLede(t(story.description));
 
   return <div className={`profile-side-panel${entered ? ' is-open' : ''}`}
               onKeyDown={handleKeyDown}>
             <div className="profile-side-panel-backdrop" onClick={close} />
             <div className="profile-side-panel-sheet"
-                role="dialog" 
+                role="dialog"
                 aria-modal="true"
                 aria-labelledby="profile-panel-heading">
               <div className="profile-side-panel-head">
@@ -80,22 +88,26 @@ export default function ProfileSidePanel() {
                 </button>
               </div>
               <div className="profile-side-panel-body">
-                <figure className="profile-side-panel-figure">
-                  <img src={photo.src}
-                      alt={t(photo.alt)}
-                      width={photo.width}
-                      height={photo.height}
-                      style={{ objectPosition: photo.position }} />
-                </figure>
-                <p className="eyebrow profile-side-panel-tagline">{t(story.tagline)}</p>
-                <h2 id="profile-panel-heading" tabIndex={-1}>{t(story.title)}</h2>
-                <p className="profile-side-panel-description">{t(story.description)}</p>
-                <ul className="profile-side-panel-keywords">
-                  {
-                    story.keywords.map((keyword, index) => 
-                      <li key={index}>{t(keyword)}</li>)
-                  }
-                </ul>
+                {/* Keyed by profile so Previous/Next replays the reveal instead of jump-cutting the text. */}
+                <div className="profile-side-panel-reveal" key={activeId}>
+                  <figure className="profile-side-panel-figure">
+                    <img src={photo.src}
+                        alt={t(photo.alt)}
+                        width={photo.width}
+                        height={photo.height}
+                        style={{ objectPosition: photo.position }} />
+                  </figure>
+                  <p className="eyebrow profile-side-panel-tagline">{t(story.tagline)}</p>
+                  <h2 id="profile-panel-heading" tabIndex={-1}>{t(story.title)}</h2>
+                  <p className="profile-side-panel-lede">{lede}</p>
+                  {rest && <p className="profile-side-panel-description">{rest}</p>}
+                  <ul className="profile-side-panel-keywords">
+                    {
+                      story.keywords.map((keyword, index) =>
+                        <li key={index}>{t(keyword)}</li>)
+                    }
+                  </ul>
+                </div>
               </div>
               <nav className="profile-side-panel-nav" aria-label={t('Other profiles')}>
                 <button type="button"
