@@ -84,27 +84,29 @@ export default function SkillExplorer({ route }) {
                 t('Choose a technology to discover where it fits.')
               }
             </p>
-            {
-              technologyGroups.map(g =>
-                <section key={g.id} className="explorer-group" aria-labelledby={`group-heading-${g.id}`}>
-                  <h3 id={`group-heading-${g.id}`}>{t(g.label)}</h3>
-                  <p className="skill-group-description">{t(g.description)}</p>
-                  <ul className="technology-grid">
-                    {
-                      g.technologies.map(tech =>
-                        <li key={tech.id}>
-                          <a href={`#skills/${g.id}/${tech.id}`}>
-                            <span className="technology-name">
-                              <TechnologyLogo
-                                name={tech.name}
-                                symbol={tech.symbol} />
-                                {t(tech.label)}
-                            </span>
-                            <Arrow diagonal />
-                          </a>
-                        </li>)
-                    }
-                  </ul>
-                </section>)}
+            <div className="explorer-groups">
+              {
+                technologyGroups.map(g =>
+                  <section key={g.id} className="explorer-group" aria-labelledby={`group-heading-${g.id}`}>
+                    <h3 id={`group-heading-${g.id}`}>{t(g.label)}</h3>
+                    <p className="skill-group-description">{t(g.description)}</p>
+                    <ul className="technology-grid">
+                      {
+                        g.technologies.map(tech =>
+                          <li key={tech.id}>
+                            <a href={`#skills/${g.id}/${tech.id}`}>
+                              <span className="technology-name">
+                                <TechnologyLogo
+                                  name={tech.name}
+                                  symbol={tech.symbol} />
+                                  {t(tech.label)}
+                              </span>
+                              <Arrow diagonal />
+                            </a>
+                          </li>)
+                      }
+                    </ul>
+                  </section>)}
+            </div>
           </div>;
 }

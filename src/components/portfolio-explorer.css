@@ -37,7 +37,7 @@
 .related-project strong { display: block; font-size: 14px; font-weight: 500; }
 .related-project small { display: block; margin-top: 9px; font-size: 10px; line-height: 1.6; color: #99acc9; }
 .related-project svg { color: #89aef0; }
-.technology-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.technology-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .technology-grid a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px; min-height: 65px; border: 1px solid #34445d; background: #172238; border-radius: 6px; font-size: 13px; }
 .technology-grid a:hover { border-color: #759ee6; background: #1f3150; }
 .technology-grid svg { width: 16px; color: #87a9e2; }
@@ -79,8 +79,11 @@
   .community-identity h3 { font-size: 25px; }
 }
 .skill-group-description { color: #a7b6ce; font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
-.explorer-group { margin-top: 40px; padding-top: 28px; border-top: 1px solid #303d51; }
-.explorer-group:first-of-type { margin-top: 28px; padding-top: 0; border-top: 0; }
+.explorer-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; margin-top: 28px; }
+.explorer-groups .explorer-group { margin-top: 0; padding: 26px; border: 1px solid #303d51; border-radius: 8px; background: #15203155; }
+/* Lets Experience (always journeyGroups[0]) run alongside Education/Certifications/Recognition
+   stacked in the other column, instead of paying for its own row — assumes exactly 4 groups. */
+.journey-explorer .explorer-group:first-child { grid-row: span 3; }
 .technology-name { min-width: 0; }
 .technology-name .technology-logo { width: 28px; height: 28px; }
 .technology-detail h2 { overflow-wrap: anywhere; }
@@ -111,6 +114,9 @@
   .explorer-content .project { grid-template-columns: 1fr; }
   .explorer-content .project-art { min-height: 260px; }
   .explorer-content .mini-browser { max-width: 290px; }
+  .explorer-groups { grid-template-columns: 1fr; }
+  .technology-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .journey-explorer .explorer-group:first-child { grid-row: auto; }
 }
 @media (max-width: 760px) {
   .explorer-content { padding: 20px var(--page) 28px; }
@@ -118,7 +124,8 @@
   .section-lead { font-size: 13px; }
   .profile-facts { grid-template-columns: 1fr; gap: 23px; }
   .technology-grid { grid-template-columns: 1fr; }
-  .explorer-group { margin-top: 32px; padding-top: 22px; }
+  .explorer-groups { gap: 18px; }
+  .explorer-groups .explorer-group { padding: 20px; }
   .explorer-empty { padding: 22px 18px; }
   .explorer-content .project-description { padding: 24px 19px; }
   .contact-panel .email-link { font-size: 15px; }
