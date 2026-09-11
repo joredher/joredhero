@@ -49,7 +49,6 @@
 
 .explorer-navigation { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px var(--page); border-bottom: 1px solid #303d51; flex-shrink: 0; }
 .explorer-navigation a { display: flex; align-items: center; gap: 8px; min-height: 40px; border: 1px solid transparent; border-radius: 5px; padding: 8px 12px; font-size: 11px; color: #a7b4c8; }
-.explorer-navigation a>span { font-size: 7px; color: #5b6980; }
 .explorer-navigation svg { display: none; }
 .explorer-navigation a:hover { color: #fff; background: #1b2639; }
 .explorer-navigation a[aria-current] { border-color: #415d88; background: #1c2d49; color: white; }

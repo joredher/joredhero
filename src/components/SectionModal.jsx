@@ -86,11 +86,10 @@ export default function SectionModal({ route, selected, children }) {
               </div>
               <nav className="explorer-navigation" aria-label={t('Portfolio sections')}>
                 {
-                  profileCategories.map((category, index) => 
+                  profileCategories.map(category =>
                         <a key={category.id}
-                          href={`#${category.section}`} 
+                          href={`#${category.section}`}
                           aria-current={selected?.id === category.id ? 'location' : undefined}>
-                            <span>0{index + 1}</span>
                             {t(category.label)}
                             <Arrow diagonal />
                         </a>)
