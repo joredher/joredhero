@@ -6,13 +6,17 @@ const LanguageContext = createContext(null);
 const storageKey = 'portfolio-language';
 export function LanguageProvider({ children }) {
   // Always starts 'en' (matching what a build-time prerender always sees, since it can't
-  // know a visitor's stored preference) so hydration never mismatches; a stored 'es'
-  // preference is applied right after mount below.
+  // know a visitor's stored preference or browser language) so hydration never mismatches;
+  // the real preference — a stored choice, or failing that the browser's own language on a
+  // first visit — is applied right after mount below.
   const [language, setLanguage] = useState('en');
   useEffect(() => {
     let stored;
     try { stored = localStorage.getItem(storageKey); } catch { stored = null; }
     if (stored === 'es') setLanguage('es');
+    // No saved choice yet — a first visit — so fall back to the browser's own language
+    // setting rather than always defaulting to English regardless of who's visiting.
+    else if (stored === null && navigator.language?.startsWith('es')) setLanguage('es');
   }, []);
   function t(message, values = {}) {
     // Résumé records keep both languages together; existing UI strings use the dictionary.
