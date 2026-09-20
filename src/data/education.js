@@ -7,6 +7,7 @@ export const education = [
       "es": "Diploma en Tecnología de la Información — Programación Avanzada"
     },
     "organization": "Canterbury Technical Institution",
+    "country": "AU",
     "location": "Brisbane, Queensland, Australia",
     "period": {
       "en": "Nov 2024 – Nov 2025",
@@ -25,6 +26,7 @@ export const education = [
       "es": "Inglés extremo e intensivo — Intermedio alto / B2+"
     },
     "organization": "Impact English College & NCVE",
+    "country": "AU",
     "location": "Brisbane, Queensland, Australia",
     "period": {
       "en": "Aug 2024 – Oct 2024",
@@ -43,6 +45,7 @@ export const education = [
       "es": "Ingeniería de Sistemas"
     },
     "organization": "Universidad de San Gil",
+    "country": "CO",
     "location": "Yopal, Casanare, Colombia",
     "period": {
       "en": "Feb 2012 – Nov 2018",
@@ -69,6 +72,7 @@ export const certifications = [
       "es": "Certificación en Habilidades de Programación — Desarrollo Web y Móvil"
     },
     "organization": "UNAB · MINTIC",
+    "country": "CO",
     "location": {
       "en": "Online, Colombia",
       "es": "En línea, Colombia"
