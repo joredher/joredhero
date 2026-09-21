@@ -8,6 +8,8 @@ export const spanish = {
   'Related experience': 'Experiencia relacionada',
   'Technologies used': 'Tecnologías utilizadas',
   'Part-time': 'Tiempo parcial',
+  'Remote': 'Remoto',
+  '{company} on LinkedIn': '{company} en LinkedIn',
   'Open this entry': 'Abrir este registro',
   'Language': 'Idioma',
   'Close': 'Cerrar', 'Let’s talk': 'Hablemos',
