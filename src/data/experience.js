@@ -22,8 +22,8 @@ const roles = [
     },
     highlights: [
       {
-        en: 'Modular components and reactive interfaces for **cross-platform web and mobile** apps (**React, Vue, Ionic**).',
-        es: 'Componentes modulares e interfaces reactivas para apps **web y móviles multiplataforma** (**React, Vue, Ionic**).',
+        en: 'Contributed to designing **modular components** and reactive interfaces for **cross-platform web and mobile** apps (**React, Vue, Ionic**).',
+        es: 'Participación en el diseño de **componentes modulares** e interfaces reactivas para apps **web y móviles multiplataforma** (**React, Vue, Ionic**).',
       },
       {
         en: 'Requirements and bug resolution across **web and mobile** for the **119 Emergencias** project.',
@@ -198,8 +198,8 @@ const roles = [
         es: '**API REST** integrada a un frontend reactivo en **Vue.js**, optimizando la experiencia de usuario y la capacidad de respuesta.',
       },
       {
-        en: 'Open-source databases (**MySQL**) and additional core modules extending the application.',
-        es: 'Bases de datos open source (**MySQL**) y módulos adicionales que amplían la aplicación.',
+        en: 'Used open-source databases (**MySQL**) and supported the development of **additional core modules**.',
+        es: 'Uso de bases de datos open source (**MySQL**) y apoyo al desarrollo de **módulos adicionales** de la aplicación.',
       },
     ],
     technologies: ['Laravel', 'Vue.js', 'PostgreSQL', 'MySQL', 'TypeScript', 'Node.js', 'Amazon S3', 'RESTful APIs'],
@@ -276,16 +276,16 @@ const roles = [
     },
     highlights: [
       {
-        en: '**Greenfield** enterprise management system for a regional health department.',
-        es: 'Desarrollo **desde cero** de un software de gestión empresarial para una entidad de salud departamental.',
+        en: 'Contributed to the **greenfield** development of an enterprise management system for a regional health department.',
+        es: 'Participación en el desarrollo **desde cero** de un software de gestión empresarial para una entidad de salud departamental.',
       },
       {
-        en: 'Core **Finance and Authorisations** modules for healthcare and administrative processes.',
-        es: 'Módulos de **Finanzas y Autorizaciones** para procesos administrativos y de salud.',
+        en: 'Core functionality for the **Finance and Authorisations** modules, streamlining healthcare and administrative processes.',
+        es: 'Participación en los módulos de **Finanzas y Autorizaciones** para procesos administrativos y de salud.',
       },
       {
-        en: 'First **relational database** design, **Vue.js** interfaces and complex **SQL** queries.',
-        es: 'Diseño de la primera **base de datos relacional**, interfaces en **Vue.js** y consultas **SQL**.',
+        en: 'Assisted with the first **relational database** design; built **Vue.js** interfaces and complex **SQL** queries.',
+        es: 'Apoyo en el diseño de la primera **base de datos relacional**; interfaces en **Vue.js** y consultas **SQL**.',
       },
     ],
     technologies: ['Laravel', 'Vue.js', 'PHP', 'MySQL', 'Amazon S3'],
