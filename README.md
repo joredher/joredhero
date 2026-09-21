@@ -31,7 +31,9 @@ npm run preview  # local preview of the production build
 | File | Content |
 | --- | --- |
 | `src/data/profile.js` | Name, role, biography, background, languages and contact information |
-| `src/data/experience.js` | Employment dates, organisations, responsibilities and technologies |
+| `src/data/experience.js` | Roles: dates, title, brief highlights, full responsibilities and technologies |
+| `src/data/companies.js` | Employers: name, website, LinkedIn, city, region and country |
+| `src/data/countries.js` | Country names (flags are mapped in `CountryFlag.jsx`) |
 | `src/data/education.js` | Education and programming certification |
 | `src/data/journey.js` | Journey groups and currently empty recognition records |
 | `src/data/technologies.js` | Skill groups, descriptions and related experience/project connections |
@@ -51,8 +53,8 @@ updates document metadata. No translation service is called.
 
 ## Résumé content
 
-The supplied **EN Jorge Hernandez 2026.pdf** and skills screenshot are the sources
-for the professional profile, seven employment records, three education records,
+The supplied **CV Jorge Hernandez 2026** PDFs (EN and ES) and skills screenshot are
+the sources for the professional profile, seven employment records, three education records,
 one programming certification, and eight Tech & AI groups:
 
 - Frontend
@@ -76,15 +78,39 @@ use neutral symbols. AI describes assisted coding with Copilot and ChatGPT, with
 claiming model-development experience. The portrait carousel and floating map remain
 as implemented on `master`.
 
-The original résumé PDF is not bundled as a public download in this content update.
+The résumé is offered as two PDFs (EN and ES) bundled in `src/assets/resume/`; when the
+CV changes, replace those two files and keep their names.
 The contact section includes email and icon-only social links. WhatsApp opens a chat with the supplied number; the phone number is not shown as a separate line.
 Company work is described in Journey; no unpublished company repositories, demos,
 metrics or client project cards are invented.
 
+## Journey timeline
+
+`src/data/experience.js` lists the roles newest first, and each becomes a card. To add a job:
+
+1. Add the company to `src/data/companies.js` (name, website, LinkedIn or `null`, city,
+   region and country code). A new country also needs an entry in
+   `src/data/countries.js` and a flag in `CountryFlag.jsx`.
+2. Add the role to `experience.js` with that `companyId`, a `title`, the `titleAccent`
+   part of it shown in the accent colour, `period`, two or three brief `highlights`
+   (wrap key phrases in `**double asterisks**`), the full `details` and the
+   `technologies`. The organisation name and place come from the company.
+3. Optionally add the logo to `src/assets/companies/` and map it in `CompanyLogo.jsx`
+   (`plate: 'light'` for dark artwork, `'dark'` for white artwork). Without a logo, or if
+   the image fails to load, a building icon is shown.
+4. Write every text in both languages and run `npm test`, which checks that each role
+   points to a real company and that the emphasis markers are balanced.
+
+Highlights only compress what the CV says; keep its qualifiers ("contributed to",
+"assisted with") so a card never claims more than the full entry does.
+
 ## Navigation and progressive disclosure
 
-Map cards open modal sections. Journey entries expand to show responsibilities and
-technology links; each also has a direct entry link. Technology details link back
+Map cards open modal sections. In Journey, Experience is a timeline with one card per
+role (company logo, place with country flag, dates, brief highlights and technology
+links) and **Open this entry** shows the full responsibilities. Education and
+Certifications sit beside it as expandable entries; every entry has a direct link.
+Technology details link back
 to the roles that explicitly list that tool in the résumé. The portfolio project
 remains linked to React, Vite and CSS.
 
@@ -110,7 +136,8 @@ The three supplied PNGs remain under `src/assets/images/`. Logos and flags are
 local SVG files in `src/assets/icons/`, rendered through `TechnologyLogo` and
 `LanguageSwitcher`. Logo names remain visible and the decorative images have empty
 alternative text. Add a mapping in `TechnologyLogo.jsx` when adding a new brand;
-otherwise a neutral concept symbol is shown.
+otherwise a neutral concept symbol is shown. Journey adds company logos
+(`src/assets/companies/`, through `CompanyLogo`) and country flags (`CountryFlag`).
 
 See `THIRD_PARTY_NOTICES.md` for logo and flag sources and licenses. Typography uses
 Google Fonts with local sans-serif fallbacks. No new runtime dependencies are needed

@@ -84,10 +84,17 @@
 }
 .skill-group-description { color: #a7b6ce; font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
 .explorer-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; margin-top: 28px; }
-.explorer-groups .explorer-group { margin-top: 0; padding: 26px; border: 1px solid #303d51; border-radius: 8px; background: #15203155; }
-/* Lets Experience (always journeyGroups[0]) run alongside Education/Certifications/Recognition
-   stacked in the other column, instead of paying for its own row — assumes exactly 4 groups. */
-.journey-explorer .explorer-group:first-child { grid-row: span 3; }
+.explorer-groups .explorer-group, .journey-side .explorer-group { margin-top: 0; padding: 26px; border: 1px solid #303d51; border-radius: 8px; background: #15203155; }
+/* Journey: the experience timeline takes the wide column; Education, Certifications and
+   Recognition stack in a narrow one beside it, so the page is only as tall as the timeline. */
+.journey-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 36px; align-items: start; margin-top: 28px; }
+.journey-main > h3 { margin-bottom: 22px; }
+.journey-side { display: grid; gap: 20px; }
+.journey-side .explorer-group { padding: 20px; }
+.journey-side .explorer-group h3 { font-size: 17px; }
+.journey-side .journey-timeline { margin-top: 16px; gap: 12px; }
+.journey-side .journey-timeline details { padding-inline: 14px; }
+.journey-organization .country-flag { display: inline-block; vertical-align: -2px; margin-right: 8px; }
 .technology-name { min-width: 0; }
 .technology-name .technology-logo { width: 28px; height: 28px; }
 .technology-detail h2 { overflow-wrap: anywhere; }
@@ -120,7 +127,7 @@
   .explorer-content .mini-browser { max-width: 290px; }
   .explorer-groups { grid-template-columns: 1fr; }
   .technology-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .journey-explorer .explorer-group:first-child { grid-row: auto; }
+  .journey-layout { grid-template-columns: 1fr; gap: 32px; }
   .about { grid-template-columns: 1fr; gap: 0; }
   .about-side .profile-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .about-side .related-links { flex-direction: row; }
@@ -132,7 +139,7 @@
   .profile-facts { grid-template-columns: 1fr; gap: 23px; }
   .technology-grid { grid-template-columns: 1fr; }
   .explorer-groups { gap: 18px; }
-  .explorer-groups .explorer-group { padding: 20px; }
+  .explorer-groups .explorer-group, .journey-side .explorer-group { padding: 20px; }
   .explorer-empty { padding: 22px 18px; }
   .explorer-content .project-description { padding: 24px 19px; }
   .contact-panel .email-link { font-size: 15px; }
