@@ -15,8 +15,6 @@
 .social-icon { object-fit: contain; }
 .social-icon-github { filter: invert(1); }
 .site-footer .social-profiles { margin-left: auto; }
-.destroy-badge { display: inline-flex; flex-basis: 100%; justify-content: center; }
-.destroy-badge img { display: block; }
 .technology-logo { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
 .technology-name { display: inline-flex; align-items: center; gap: 13px; }
 .project-tags li { display: inline-flex; align-items: center; gap: 7px; }
