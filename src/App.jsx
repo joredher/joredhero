@@ -61,6 +61,9 @@ function AppShell() {
       <p>© {new Date().getFullYear()} {profile.name}</p>
       <SocialProfiles />
       <a href="#home">{t("Back to top ↑")}</a>
+      <a className="destroy-badge" href="https://destroy.spritefusion.com/?from=badge" target="_blank" rel="noopener noreferrer">
+        <img src="https://destroy.spritefusion.com/badge.svg" alt={t("Destroy this website")} width="180" height="40" loading="lazy" />
+      </a>
     </footer>
     <ProfileSidePanel />
   </>;

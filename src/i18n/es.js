@@ -12,7 +12,7 @@ export const spanish = {
   'Language': 'Idioma',
   'Close': 'Cerrar', 'Let’s talk': 'Hablemos',
   'Jorge Hernández, home': 'Jorge Hernández, inicio',
-  'Skip to portfolio content': 'Ir al contenido del portafolio', 'Back to top': 'Volver al inicio', 'Back to top ↑': 'Volver al inicio ↑',
+  'Skip to portfolio content': 'Ir al contenido del portafolio', 'Back to top': 'Volver al inicio', 'Back to top ↑': 'Volver al inicio ↑', 'Destroy this website': 'Destruye este sitio web',
   'Spanish': 'Español', 'English': 'Inglés',
   'A technical mind.': 'Una mente técnica.', 'A personal point of view.': 'Una perspectiva personal.',
   'BASED IN {location}': 'DESDE {location}', 'PORTFOLIO / VOL. 01': 'PORTAFOLIO / VOL. 01',
