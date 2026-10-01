@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { profile } from '../src/data/profile.js';
 import { experience } from '../src/data/experience.js';
+import { education, certifications } from '../src/data/education.js';
+import { companies } from '../src/data/companies.js';
+import { countries } from '../src/data/countries.js';
 import { journeyGroups } from '../src/data/journey.js';
 import { technologyGroups, technologyHref } from '../src/data/technologies.js';
 import { projects } from '../src/data/projects.js';
@@ -38,8 +41,28 @@ test('all new bilingual records contain both languages', () => {
       bilingualRecords++;
     } else Object.values(value).forEach(check);
   }
-  [profile, journeyGroups, technologyGroups, personalityProfiles].forEach(check);
+  [profile, journeyGroups, technologyGroups, personalityProfiles, countries].forEach(check);
   assert.ok(bilingualRecords > 0);
+});
+
+test('every role links to a real company, and its timeline copy is well-formed', () => {
+  for (const entry of experience) {
+    const company = companies[entry.companyId];
+    assert.ok(company, `Unknown company: ${entry.companyId}`);
+    assert.ok(countries[company.location.country], `Unknown country for ${company.name}`);
+    assert.equal(entry.organization, company.name);
+    // The accent is a substring of the title in each language; a typo would silently disable it.
+    for (const lang of ['en', 'es']) {
+      assert.ok(entry.title[lang].includes(entry.titleAccent[lang]), `${entry.id}: accent not in ${lang} title`);
+    }
+    assert.ok(entry.highlights.length >= 2 && entry.highlights.length <= 3, `${entry.id}: expected 2-3 highlights`);
+    assert.ok(entry.details.length > 0, `${entry.id}: full details are needed for the entry page and SEO`);
+    for (const highlight of entry.highlights) for (const lang of ['en', 'es']) {
+      assert.equal(highlight[lang].split('**').length % 2, 1, `${entry.id}: unbalanced ** markers in ${lang}`);
+    }
+  }
+  assert.equal(experience.filter(entry => entry.current).length, 1);
+  for (const entry of [...education, ...certifications]) assert.ok(countries[entry.country], `${entry.id}: unknown country`);
 });
 
 test('legacy technology links and journey aliases survive; invalid records stay unavailable', () => {
