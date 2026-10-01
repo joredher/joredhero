@@ -16,3 +16,9 @@ h2{font-family:'Manrope',sans-serif;font-weight:500;font-size:clamp(32px,3.3vw,5
 @media(max-width:760px){.site-header{height:76px}.wordmark{font-size:34px}.hero-copy{max-width:520px}.eyebrow{font-size:8px;letter-spacing:1.5px}h1{font-size:clamp(48px,9vw,69px);letter-spacing:-3px;margin:25px 0}.hero-footer{font-size:7px;letter-spacing:.9px;padding:20px 0}.hero-edition{display:none}h2{font-size:35px;letter-spacing:-1.4px}.body-copy{font-size:13px;max-width:480px}.skill-explorer{padding-top:0}.project{grid-template-columns:1fr}.project-art{min-height:305px}.project-description{padding:29px}.project-description h3{margin-top:20px;font-size:29px}.project-description p{max-width:380px}.email-link{font-size:20px}.site-footer{flex-wrap:wrap;gap:17px;font-size:9px}.site-footer>p{flex-basis:65%}.site-footer>a:last-child{margin-left:auto}.site-footer{padding-top:25px;padding-bottom:25px}html{scroll-padding-top:85px}}
 @media(max-width:360px){:root{--page:20px}.button{font-size:11px;gap:13px}.email-link{font-size:17px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}.button.primary:hover{transform:none}}
+.mini-frame{position:relative;aspect-ratio:16/10;overflow:hidden;background:#fff;border-radius:0 0 6px 6px}
+.mini-frame img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.project-art-link{display:block}
+.project-art-link:focus-visible,.project-description:focus-visible{outline:2px solid #5d78ad;outline-offset:-2px}
+.project:hover .project-art-link .mini-browser{transform:rotate(-1deg) translateY(-4px)}
+.project-description{color:inherit;text-decoration:none}

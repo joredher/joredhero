@@ -68,6 +68,19 @@ const groups = [
         "symbol": "code"
       },
       {
+        "id": "vite",
+        "name": "Vite",
+        "label": {
+          "en": "Vite",
+          "es": "Vite"
+        },
+        "description": {
+          "en": "Vite runs the local preview and builds the production version of this portfolio.",
+          "es": "Vite ejecuta la vista previa local y genera la versión de producción de este portafolio."
+        },
+        "symbol": "code"
+      },
+      {
         "id": "ionic",
         "name": "Ionic",
         "label": {
@@ -703,58 +716,6 @@ const groups = [
           "es": "Conocimientos previos en realidad aumentada, incluidos entre mis competencias adicionales."
         },
         "symbol": "layers"
-      }
-    ]
-  },
-  {
-    "id": "portfolio",
-    "label": {
-      "en": "This portfolio",
-      "es": "Este portafolio"
-    },
-    "description": {
-      "en": "The technologies powering this website.",
-      "es": "Las tecnologías que hacen funcionar este sitio."
-    },
-    "technologies": [
-      {
-        "id": "react",
-        "name": "React",
-        "label": {
-          "en": "React",
-          "es": "React"
-        },
-        "description": {
-          "en": "React provides the reusable components and interaction state in this portfolio.",
-          "es": "React permite crear los componentes reutilizables y gestionar las interacciones de este portafolio."
-        },
-        "symbol": "code"
-      },
-      {
-        "id": "vite",
-        "name": "Vite",
-        "label": {
-          "en": "Vite",
-          "es": "Vite"
-        },
-        "description": {
-          "en": "Vite runs the local preview and builds the production version of this portfolio.",
-          "es": "Vite ejecuta la vista previa local y genera la versión de producción de este portafolio."
-        },
-        "symbol": "code"
-      },
-      {
-        "id": "css",
-        "name": "CSS",
-        "label": {
-          "en": "CSS",
-          "es": "CSS"
-        },
-        "description": {
-          "en": "CSS defines the visual identity, responsive layouts and restrained motion in this portfolio.",
-          "es": "CSS define la identidad visual, los diseños adaptables y el movimiento sutil de este portafolio."
-        },
-        "symbol": "code"
       }
     ]
   }

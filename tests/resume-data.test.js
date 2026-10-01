@@ -45,7 +45,7 @@ test('all new bilingual records contain both languages', () => {
 test('legacy technology links and journey aliases survive; invalid records stay unavailable', () => {
   assert.equal(resolvePortfolioLocation('#skills/backend/mysql').group, 'data');
   assert.equal(resolvePortfolioLocation('#skills/backend/laravel').item, 'laravel');
-  assert.equal(resolvePortfolioLocation('#skills/portfolio/react').item, 'react');
+  assert.equal(resolvePortfolioLocation('#skills/frontend/vite').item, 'vite');
   assert.equal(resolvePortfolioLocation('#education').group, 'education');
   assert.equal(resolvePortfolioLocation('#journey/certifications/unab-mintic').item, 'unab-mintic');
   for (const hash of ['#journey/experience/missing', '#skills/data/missing', '#constructor', '#%E0%A4%A']) {
