@@ -76,7 +76,7 @@ test('legacy technology links and journey aliases survive; invalid records stay 
   }
 });
 
-test('How I work: the conversation is bilingual, complete and reachable from the landing page', async () => {
+test('How I work: the conversation is bilingual and complete', async () => {
   const { conversation } = await import('../src/data/conversation.js');
   const { processSteps } = await import('../src/data/process.js');
   const bilingual = (value, label) => {
@@ -100,8 +100,4 @@ test('How I work: the conversation is bilingual, complete and reachable from the
     assert.ok(conversation.message[lang].includes(key), `message.${lang} needs ${key}`);
   }
   for (const step of processSteps) for (const field of ['title', 'summary', 'youProvide']) bilingual(step[field], `${step.id} ${field}`);
-  // #how-i-work scrolls the landing page; it must not open a modal or the "missing" page.
-  const route = resolvePortfolioLocation('#how-i-work');
-  assert.equal(route.section, 'home');
-  assert.equal(route.anchor, 'how-i-work');
 });

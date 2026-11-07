@@ -7,7 +7,6 @@ import ResumeDownload from './components/ResumeDownload.jsx';
 import SocialProfiles from './components/SocialProfiles.jsx';
 import ProfileHero from './components/ProfileHero.jsx';
 import PortfolioExplorer from './components/PortfolioExplorer.jsx';
-import ConversationSection from './components/ConversationSection.jsx';
 import ChatLauncher from './components/ChatLauncher.jsx';
 import ProfileSidePanel from './components/ProfileSidePanel.jsx';
 import usePortfolioLocation from './hooks/usePortfolioLocation.js';
@@ -22,7 +21,6 @@ function Header({ inert }) {
         {profile.monogram}<span>.</span>
     </a>
     <div className="header-actions">
-      <a className="header-process" href="#how-i-work">{t("How I work")}</a>
       <LanguageSwitcher />
       <ResumeDownload />
       <a className="header-contact" href="#contact">
@@ -38,9 +36,7 @@ function AppShell() {
   const profilePanel = useProfilePanel();
   useEffect(() => {
     if (route.section !== 'home') return;
-    // #how-i-work is a section of the landing page itself, not a modal: scroll down to it.
-    const target = route.anchor === 'how-i-work' ? 'how-i-work' : 'home';
-    document.getElementById(target)?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    document.getElementById('home')?.scrollIntoView({ block: 'start', behavior: 'instant' });
   }, [route]);
   const sectionOpen = route.section !== 'home';
   // A section reached via URL (e.g. the back button, or a typed-in hash) should take over
@@ -57,7 +53,6 @@ function AppShell() {
     <Header inert={backgroundInert} />
     <main id="main" tabIndex={-1} inert={backgroundInert}>
       <ProfileHero route={route} />
-      <ConversationSection />
     </main>
     <PortfolioExplorer route={route} />
     <footer className="site-footer" inert={backgroundInert}>

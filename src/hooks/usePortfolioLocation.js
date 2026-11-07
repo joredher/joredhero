@@ -8,7 +8,7 @@ export function resolvePortfolioLocation(hash) {
   let anchor;
   try { anchor = decodeURIComponent(hash.replace(/^#/, '')) || 'home'; }
   catch { return { section: 'missing', anchor: 'invalid-link' }; }
-  const aliases = { overview: 'home', 'how-i-work': 'home', projects: 'work', technology: 'skills', connect: 'contact', experience: 'journey/experience', education: 'journey/education', certifications: 'journey/certifications', recognition: 'journey/recognition' };
+  const aliases = { overview: 'home', projects: 'work', technology: 'skills', connect: 'contact', experience: 'journey/experience', education: 'journey/education', certifications: 'journey/certifications', recognition: 'journey/recognition' };
   const canonical = anchor === 'skills/backend/mysql' ? 'skills/data/mysql' : Object.hasOwn(aliases, anchor) ? aliases[anchor] : anchor;
   const [section, group, item, extra] = canonical.split('/');
   const route = { section, group, item, anchor };

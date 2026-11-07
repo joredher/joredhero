@@ -1,6 +1,4 @@
 .header-actions { display: flex; align-items: center; gap: 24px; }
-.header-process { font-size: 13px; color: #b6c4da; white-space: nowrap; }
-.header-process:hover, .header-process:focus-visible { color: white; }
 .resume-download { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid #394760; border-radius: 7px; color: #b6c4da; flex-shrink: 0; }
 .resume-download:hover { background: #24334b; color: white; }
 .language-switcher { display: flex; align-items: center; padding: 3px; border: 1px solid #394760; border-radius: 7px; gap: 2px; flex-shrink: 0; }
@@ -26,7 +24,6 @@
 .technology-detail h2 .technology-logo { width: 42px; height: 42px; }
 @media (max-width: 760px) {
   .site-header { gap: 12px; }
-  .header-process { display: none; }
   .header-actions { gap: 8px; margin-left: auto; }
   .language-switcher button { padding: 6px 7px; gap: 5px; animation: none; }
   .language-switcher img { width: 21px; height: 16px; }

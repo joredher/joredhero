@@ -7,21 +7,17 @@ import { conversation } from '../data/conversation.js';
 import { processSteps } from '../data/process.js';
 import { prefersReducedMotion } from '../utils/motion.js';
 import Arrow from './Arrow.jsx';
+import ChatAvatar from './ChatAvatar.jsx';
+import HeroIcon from './HeroIcon.jsx';
 import './conversation.css';
 
 const TYPING_MS = 650;
 const whatsappBase = socialLinks.find(link => link.id === 'whatsapp')?.href;
 
-function Jorge({ children, className = '' }) {
-  return <div className={`chat-row from-jorge ${className}`}>
-    <span className="chat-avatar" aria-hidden="true">{profile.monogram}<span>.</span></span>
-    <div className="chat-bubble">{children}</div>
-  </div>;
-}
+const dots = (label) => <span className="typing" role="status" aria-label={label}><i /><i /><i /></span>;
 
-// The scripted conversation, shared by the landing-page section (variant "inline") and the
-// floating chat panel (variant "panel"). Each instance keeps its own progress.
-export default function ConversationChat({ variant = 'inline' }) {
+// The scripted conversation shown inside the floating chat panel. It keeps its own progress.
+export default function ConversationChat() {
   const { t, language } = useLanguage();
   const { steps } = conversation;
   const [answers, setAnswers] = useState([]);   // chosen option id per answered step
@@ -55,7 +51,6 @@ export default function ConversationChat({ variant = 'inline' }) {
     setAnswers(answers.slice(0, stepIndex));
     setTyping(false);
   }
-  function restart() { change(0); }
 
   const picked = steps.map((step, index) => step.options.find(option => option.id === answers[index]));
   const channel = picked[3]?.id;
@@ -72,61 +67,87 @@ export default function ConversationChat({ variant = 'inline' }) {
     },
   };
   const other = channel === 'whatsapp' ? 'email' : 'whatsapp';
+  const external = link => link.external ? { target: '_blank', rel: 'noreferrer' } : {};
 
-  return <div className={`chat${variant === 'panel' ? ' chat--panel' : ''}`} role="log" aria-live="polite" aria-relevant="additions" aria-label={t("Conversation with Jorge")}>
-      <Jorge>{t(conversation.greeting)}</Jorge>
+  // The conversation as a flat list of rows. Consecutive messages from Jorge are grouped:
+  // only the first shows his photo, so the thread stays short and easy to scan.
+  const rows = [{ key: 'greeting', from: 'jorge', content: t(conversation.greeting) }];
+  steps.forEach((step, index) => {
+    if (index > answers.length || (index === answers.length && typing)) return;
+    rows.push({ key: `q-${step.id}`, from: 'jorge', content: t(step.question) });
+    if (index < answers.length) {
+      const label = t(picked[index].label);
+      rows.push({
+        key: `a-${step.id}`, from: 'visitor',
+        content: <>
+          <span>{label}</span>
+          <button type="button" className="chat-change" onClick={() => change(index)}
+            aria-label={`${t("Change answer")}: ${label}`} title={t("Change answer")}>
+            <HeroIcon name="arrow-path" size={16} />
+          </button>
+        </>,
+      });
+      rows.push(index === answers.length - 1 && typing
+        ? { key: 'typing', from: 'jorge', content: dots(t("Jorge is typing")) }
+        : { key: `r-${step.id}`, from: 'jorge', content: t(picked[index].reply) });
+    } else {
+      rows.push({
+        key: `o-${step.id}`, control: true,
+        content: <div className="chat-options" role="group" aria-label={t(step.question)} ref={optionsRef}>
+          {step.options.map(option =>
+            <button type="button" key={option.id} onClick={() => choose(index, option.id)}>{t(option.label)}</button>)}
+        </div>,
+      });
+    }
+  });
+  if (done && !typing) {
+    rows.push({
+      key: 'path', from: 'jorge',
+      content: <>
+        <p>{t(conversation.path.intro)}</p>
+        <ol className="stages">
+          {processSteps.map(stage => <li key={stage.id} className="stage">
+            <details>
+              <summary>
+                <span className="stage-dot" aria-hidden="true" />
+                <strong>{t(stage.title)}</strong>
+                <HeroIcon name="chevron-down" size={16} className="stage-chevron" />
+              </summary>
+              <p>{t(stage.summary)}</p>
+              <p className="stage-need"><em>{t("What I need from you")}:</em> {t(stage.youProvide)}</p>
+            </details>
+          </li>)}
+        </ol>
+      </>,
+    });
+    rows.push({ key: 'closing', from: 'jorge', content: t(conversation.closing) });
+    rows.push({
+      key: 'actions', control: true,
+      content: <div className="chat-actions">
+        <a className="chat-send" href={links[channel].href} {...external(links[channel])}>
+          {t("Send my answers by")} {links[channel].label} <Arrow diagonal width={16} height={16} />
+        </a>
+        <a className="chat-chip" href={links[other].href} {...external(links[other])}>
+          {t("or by")} {links[other].label}
+        </a>
+        <button type="button" className="chat-restart" onClick={() => change(0)}>
+          <HeroIcon name="arrow-path" size={16} /> {t("Start over")}
+        </button>
+      </div>,
+    });
+  }
 
-      {steps.map((step, index) => {
-        const reached = index <= answers.length;
-        const answered = index < answers.length;
-        const latest = index === answers.length - 1;
-        if (!reached || (index === answers.length && typing)) return null;
-        return <div className="chat-step" key={step.id}>
-          <Jorge>{t(step.question)}</Jorge>
-          {answered && <>
-            <div className="chat-row from-visitor">
-              <div className="chat-bubble">
-                {t(picked[index].label)}
-                <button type="button" className="chat-change" onClick={() => change(index)}>{t("Change")}</button>
-              </div>
-            </div>
-            {!(latest && typing) && <Jorge>{t(picked[index].reply)}</Jorge>}
-            {latest && typing && <Jorge className="is-typing"><span className="typing" role="status" aria-label={t("Jorge is typing")}><i /><i /><i /></span></Jorge>}
-          </>}
-          {!answered && !typing && <div className="chat-options" role="group" aria-label={t(step.question)} ref={optionsRef}>
-            {step.options.map(option =>
-              <button type="button" key={option.id} onClick={() => choose(index, option.id)}>{t(option.label)}</button>)}
-          </div>}
-        </div>;
-      })}
-
-      {done && !typing && <div className="chat-step chat-path">
-        <Jorge>
-          <p>{t(conversation.path.intro)}</p>
-          <ol className="path-list">
-            {processSteps.map((step, index) => <li key={step.id}>
-              <span className="path-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <span>
-                <strong>{t(step.title)}</strong>
-                <span className="path-summary">{t(step.summary)}</span>
-                <span className="path-need"><em>{t("What I need from you")}:</em> {t(step.youProvide)}</span>
-              </span>
-            </li>)}
-          </ol>
-        </Jorge>
-        <Jorge>{t(conversation.closing)}</Jorge>
-        <div className="chat-actions">
-          <a className="button primary" href={links[channel].href}
-            {...(links[channel].external ? { target: '_blank', rel: 'noreferrer' } : {})}>
-            {t("Send my answers by")} {links[channel].label} <Arrow diagonal />
-          </a>
-          <a className="chat-secondary" href={links[other].href}
-            {...(links[other].external ? { target: '_blank', rel: 'noreferrer' } : {})}>
-            {t("or by")} {links[other].label}
-          </a>
-          <button type="button" className="chat-restart" onClick={restart}>{t("Start over")}</button>
-        </div>
-      </div>}
-      <div ref={endRef} aria-hidden="true" />
-    </div>;
+  let previousFrom = null;
+  return <div className="chat" role="log" aria-live="polite" aria-relevant="additions" aria-label={t("Conversation with Jorge")}>
+    {rows.map(row => {
+      const grouped = row.from === 'jorge' && previousFrom === 'jorge';
+      previousFrom = row.control ? null : row.from;
+      if (row.control) return <div key={row.key} className="chat-control">{row.content}</div>;
+      return <div key={row.key} className={`chat-row from-${row.from}${grouped ? ' is-grouped' : ''}${row.key === 'typing' ? ' is-typing' : ''}`}>
+        {row.from === 'jorge' && (grouped ? <span className="chat-avatar-spacer" aria-hidden="true" /> : <ChatAvatar />)}
+        <div className="chat-bubble">{row.content}</div>
+      </div>;
+    })}
+    <div ref={endRef} aria-hidden="true" />
+  </div>;
 }

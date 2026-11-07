@@ -153,3 +153,14 @@ logo mappings live in CommunityCard.jsx. No leadership role or event history is 
 The shared monogram is eo. (Eduardo Oropeza); the hero continues to display Jorge
 Hernández. Social links show logos only, with accessible names, hover titles, and
 46px touch targets in Contact and the footer.
+
+## Chat
+
+A floating **Chat** button (`ChatLauncher.jsx`) opens a panel with a scripted, bilingual
+conversation (`ConversationChat.jsx`): four tappable questions, the five-step process from
+`src/data/process.js`, and a prefilled WhatsApp or email message. All of its wording lives in
+`src/data/conversation.js` and `src/data/process.js` and is **draft copy** until reviewed.
+The panel's footer always links to WhatsApp and email. Jorge's avatar crops the existing
+"relaxed" portrait with CSS (`ChatAvatar.jsx`), so no extra image is downloaded. The chat and
+close icons come from Heroicons (see `THIRD_PARTY_NOTICES.md`). There is no language model or
+server behind the chat yet.
