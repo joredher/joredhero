@@ -35,7 +35,7 @@ export default function SeoSummary() {
     <dl>
       <div><dt>Based in</dt><dd>{profile.location}</dd></div>
       <div><dt>Languages</dt><dd>{profile.languages.join(', ')}</dd></div>
-      <div><dt>Contact</dt><dd>{profile.email}</dd></div>
+      <div><dt>Contact</dt><dd>Use the chat button on the page, or the LinkedIn profile below.</dd></div>
     </dl>
 
     <h3>Experience</h3>
@@ -75,7 +75,7 @@ export default function SeoSummary() {
     </>}
 
     <h3>Contact</h3>
-    <p>{profile.email}</p>
-    <ul>{socialLinks.map(link => <li key={link.id}><a href={link.href}>{link.label}</a></li>)}</ul>
+    <p>Use the chat button on the page, or the profile links below.</p>
+    <ul>{socialLinks.filter(link => link.href).map(link => <li key={link.id}><a href={link.href}>{link.label}</a></li>)}</ul>
   </div>;
 }

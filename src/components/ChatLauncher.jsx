@@ -1,19 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
-import { profile } from '../data/profile.js';
-import { socialLinks } from '../data/socialLinks.js';
+import useContact, { mailtoUrl, whatsappUrl } from '../hooks/useContact.js';
 import ConversationChat from './ConversationChat.jsx';
 import ChatAvatar from './ChatAvatar.jsx';
 import HeroIcon from './HeroIcon.jsx';
 import './chat-launcher.css';
-
-const whatsapp = socialLinks.find(link => link.id === 'whatsapp')?.href;
 
 // A floating button that opens the same scripted conversation in a panel. It is a
 // non-modal dialog, so the page behind it stays usable. The panel is mounted on first
 // open and then only hidden, so a visitor keeps their progress when they close it.
 export default function ChatLauncher() {
   const { t } = useLanguage();
+  const contact = useContact();
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const buttonRef = useRef(null);
@@ -50,8 +48,8 @@ export default function ChatLauncher() {
       <div className="chat-panel-body"><ConversationChat /></div>
       <footer className="chat-panel-foot">
         <span>{t("Prefer to talk to Jorge directly?")}</span>
-        <a href={whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
-        <a href={`mailto:${profile.email}`}>{t({ en: 'Email', es: 'Correo' })}</a>
+        <a href={whatsappUrl(contact.whatsapp)} target="_blank" rel="noreferrer">WhatsApp</a>
+        <a href={mailtoUrl(contact.email)}>{t({ en: 'Email', es: 'Correo' })}</a>
       </footer>
     </section>}
     <button ref={buttonRef} type="button" className="chat-fab" onClick={toggle}

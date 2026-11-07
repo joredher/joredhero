@@ -14,9 +14,7 @@ export const profile = {
     en: 'My work spans API integrations, web scraping and data pipelines, real-time communication, and deployments with AWS and Docker. Studying in Australia strengthened my professional English and my ability to collaborate across cultures.',
     es: 'Mi trabajo abarca integraciones de API, web scraping y procesos de datos, comunicación en tiempo real y despliegues con AWS y Docker. Estudiar en Australia fortaleció mi inglés profesional y mi capacidad de colaborar entre culturas.',
   },
-  email: 'joredher30@gmail.com',
-  phone: '+57 312 714 4447',
-  phoneHref: 'tel:+573127144447',
+  // Email and WhatsApp live, encoded, in contact.js so they are not in the raw HTML or bundle.
   github: 'https://github.com/joredher/joredhero',
 };
 

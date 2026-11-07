@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
 import { resolveBilingual } from '../i18n/bilingual.js';
-import { profile } from '../data/profile.js';
-import { socialLinks } from '../data/socialLinks.js';
+import useContact, { mailtoUrl, whatsappUrl } from '../hooks/useContact.js';
 import { conversation } from '../data/conversation.js';
 import { processSteps } from '../data/process.js';
 import { prefersReducedMotion } from '../utils/motion.js';
@@ -12,13 +11,13 @@ import HeroIcon from './HeroIcon.jsx';
 import './conversation.css';
 
 const TYPING_MS = 650;
-const whatsappBase = socialLinks.find(link => link.id === 'whatsapp')?.href;
 
 const dots = (label) => <span className="typing" role="status" aria-label={label}><i /><i /><i /></span>;
 
 // The scripted conversation shown inside the floating chat panel. It keeps its own progress.
 export default function ConversationChat() {
   const { t, language } = useLanguage();
+  const contact = useContact();
   const { steps } = conversation;
   const [answers, setAnswers] = useState([]);   // chosen option id per answered step
   const [typing, setTyping] = useState(false);  // Jorge "is typing" after the latest answer
@@ -60,10 +59,10 @@ export default function ConversationChat() {
     when: resolveBilingual(picked[2].summary, language),
   }) : '';
   const links = {
-    whatsapp: { label: 'WhatsApp', href: `${whatsappBase}?text=${encodeURIComponent(text)}`, external: true },
+    whatsapp: { label: 'WhatsApp', href: whatsappUrl(contact.whatsapp, text), external: true },
     email: {
       label: t({ en: 'Email', es: 'Correo' }),
-      href: `mailto:${profile.email}?subject=${encodeURIComponent(t(conversation.subject))}&body=${encodeURIComponent(text)}`,
+      href: mailtoUrl(contact.email, { subject: t(conversation.subject), body: text }),
     },
   };
   const other = channel === 'whatsapp' ? 'email' : 'whatsapp';

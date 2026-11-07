@@ -1,5 +1,6 @@
 import { useLanguage } from '../../i18n/LanguageContext.jsx';
 import { profile } from '../../data/profile.js';
+import useContact, { mailtoUrl } from '../../hooks/useContact.js';
 import { resumeFiles, resumeFileNames } from '../../data/resume.js';
 import Arrow from '../Arrow.jsx';
 import Download from '../Download.jsx';
@@ -7,6 +8,7 @@ import SocialProfiles from '../SocialProfiles.jsx';
 
 export default function Contact() {
   const { t } = useLanguage();
+  const contact = useContact();
   return <div className="contact-panel">
             <h2 id="section-heading">
               {
@@ -22,8 +24,8 @@ export default function Contact() {
               }
             </p>
             <a className="email-link"
-              href={`mailto:${profile.email}`}>
-                {profile.email}<Arrow diagonal />
+              href={mailtoUrl(contact.email)}>
+                {contact.email}<Arrow diagonal />
             </a>
             <span className="contact-note">{t("Opens your email app")}</span>
             <details className="detail-block" open>

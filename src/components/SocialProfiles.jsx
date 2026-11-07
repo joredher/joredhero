@@ -1,5 +1,6 @@
 import { socialLinks } from '../data/socialLinks.js';
 import { useLanguage } from '../i18n/LanguageContext.jsx';
+import useContact, { whatsappUrl } from '../hooks/useContact.js';
 import github from '../assets/icons/github.svg';
 import linkedin from '../assets/icons/linkedin.svg';
 import whatsapp from '../assets/icons/whatsapp.svg';
@@ -21,11 +22,12 @@ function SocialIcon({ id }) {
 }
 export default function SocialProfiles() {
   const { t } = useLanguage();
+  const contact = useContact();
   return <nav className="social-profiles" aria-label={t('Social profiles')}>
     {
-      socialLinks.map(link => 
-        <a key={link.id} 
-          href={link.href} 
+      socialLinks.map(link =>
+        <a key={link.id}
+          href={link.href ?? (link.id === 'whatsapp' ? whatsappUrl(contact.whatsapp) : undefined)}
           target="_blank" 
           rel="noopener noreferrer" 
           title={link.label} 
