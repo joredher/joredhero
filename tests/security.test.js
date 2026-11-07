@@ -174,3 +174,16 @@ test('contact details are stored encoded, never as plain email or wa.me text in 
   assert.equal(mailtoUrl(''), undefined, 'before the page loads there is no link at all');
   assert.equal(whatsappUrl(''), undefined);
 });
+
+test('every label in the chat has a Spanish translation, so the chat follows the language switch', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const { spanish } = await import('../src/i18n/es.js');
+  const missing = [];
+  for (const file of ['src/components/ConversationChat.jsx', 'src/components/ChatLauncher.jsx']) {
+    const source = await readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+    for (const [, key] of source.matchAll(/\bt\("([^"]+)"\)/g)) {
+      if (!Object.hasOwn(spanish, key.trim())) missing.push(`${file}: "${key}"`);
+    }
+  }
+  assert.deepEqual(missing, [], `labels with no Spanish translation:\n${missing.join('\n')}`);
+});

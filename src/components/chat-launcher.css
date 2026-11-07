@@ -11,6 +11,19 @@
 .chat-panel-close { border: 0; background: transparent; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #b6c4da; transition: background 160ms ease; }
 .chat-panel-close:hover { background: #24334b; color: white; }
 
+/* Compact language switch in the header: the panel can cover the site header on phones. */
+.chat-panel-head h2 { min-width: 0; }
+.language-switcher--compact { flex: none; padding: 2px; border-radius: 18px; }
+.language-switcher--compact button { min-height: 36px; padding: 2px 10px 2px 8px; gap: 6px; border-radius: 16px; font-size: 11px; animation: none; }
+.language-switcher--compact img { width: 20px; height: 15px; }
+@media (max-width: 400px) {
+  .chat-panel-head { gap: 8px; padding-left: 10px; }
+  .chat-panel-head h2 { font-size: 14px; }
+  .chat-avatar--head { flex-basis: 34px; width: 34px; height: 34px; }
+  .language-switcher--compact button { padding: 2px 8px; }
+  .language-switcher--compact button span { display: none; }
+}
+
 /* Scrollbar: same thin, muted style as the section modals, brightening on hover. */
 .chat-panel-body { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #3d4d66 transparent; }
 .chat-panel-body::-webkit-scrollbar { width: 8px; }

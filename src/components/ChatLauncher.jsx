@@ -3,6 +3,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx';
 import useContact, { mailtoUrl, whatsappUrl } from '../hooks/useContact.js';
 import ConversationChat from './ConversationChat.jsx';
 import ChatAvatar from './ChatAvatar.jsx';
+import LanguageSwitcher from './LanguageSwitcher.jsx';
 import HeroIcon from './HeroIcon.jsx';
 import './chat-launcher.css';
 
@@ -40,6 +41,7 @@ export default function ChatLauncher() {
       <header className="chat-panel-head">
         <ChatAvatar className="chat-avatar--head" />
         <h2 id="chat-panel-title">{t("Chat with Jorge")}</h2>
+        <LanguageSwitcher compact />
         <button type="button" className="chat-panel-close" onClick={() => setOpen(false)}
           aria-label={t("Close chat")} title={t("Close chat")}>
           <HeroIcon name="x-mark" size={22} />
