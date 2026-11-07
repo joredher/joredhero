@@ -2,6 +2,14 @@
 // Add a translation here whenever new public copy is added to the content files.
 export const spanish = {
   'Community': 'Comunidad',
+  'How I work': 'Cómo trabajo', 'HOW I WORK': 'CÓMO TRABAJO', 'SEE HOW I WORK': 'MIRA CÓMO TRABAJO',
+  'Let’s have a': 'Tengamos una', 'conversation.': 'conversación.',
+  'Answer a few questions and see how a project with me would go, from the first message to launch.': 'Responde unas preguntas y mira cómo sería un proyecto conmigo, desde el primer mensaje hasta el lanzamiento.',
+  'Chat with Jorge': 'Chatea con Jorge', 'Chat': 'Chat', 'Close chat': 'Cerrar chat',
+  'Prefer to talk to Jorge directly?': '¿Prefieres hablar directamente con Jorge?',
+  'Conversation with Jorge': 'Conversación con Jorge', 'Jorge is typing': 'Jorge está escribiendo',
+  'Change': 'Cambiar', 'What I need from you': 'Lo que necesito de ti',
+  'Send my answers by': 'Enviar mis respuestas por', 'or by': 'o por', 'Start over': 'Empezar de nuevo',
   'Meet the community': 'Conoce la comunidad',
   'English — Upper-Intermediate (B2+)': 'Inglés — Intermedio alto (B2+)',
   'Explore my experience': 'Explora mi experiencia',

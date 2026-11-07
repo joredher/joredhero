@@ -4,6 +4,7 @@ import { education, certifications } from '../data/education.js';
 import { technologyGroups } from '../data/technologies.js';
 import { projects } from '../data/projects.js';
 import { communities } from '../data/communities.js';
+import { processSteps } from '../data/process.js';
 import { socialLinks } from '../data/socialLinks.js';
 import { resolveBilingual } from '../i18n/bilingual.js';
 
@@ -59,6 +60,11 @@ export default function SeoSummary() {
       <p>{en(project.description)}</p>
       <p>Built with: {project.technologies.map(tech => tech.label).join(', ')}</p>
     </article>)}
+
+    <h3>How I work</h3>
+    <ol>{processSteps.map(step => <li key={step.id}>
+      <strong>{en(step.title)}</strong>: {en(step.summary)} What I need from you: {en(step.youProvide)}
+    </li>)}</ol>
 
     {communities.length > 0 && <>
       <h3>Communities</h3>

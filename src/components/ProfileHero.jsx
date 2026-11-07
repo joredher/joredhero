@@ -24,6 +24,9 @@ export default function ProfileHero({ route }) {
               </p>
             </div>
             <ProfileMap route={route} />
+            <p className="scroll-cue">
+              <a href="#how-i-work">{t("SEE HOW I WORK")} <span aria-hidden="true">↓</span></a>
+            </p>
             <div className="hero-footer">
               <span>
                 {
