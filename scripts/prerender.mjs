@@ -32,5 +32,14 @@ const seoBlock = [
 ].join('');
 html = html.replace(seoMarker, seoBlock);
 
+// Production guard: the page must never ship a raw email address, mailto: or wa.me link in its
+// HTML (scrapers harvest them). Contact details are assembled in the browser instead; see
+// src/data/contact.js. Local development is unaffected: only this build step enforces it.
+const leaks = [/[\w.+-]+@[\w-]+\.[\w.-]+/, /mailto:/i, /wa\.me\//i, /api\.whatsapp\.com/i, /\+?57 ?3\d{2} ?\d{3} ?\d{4}/]
+  .map(pattern => html.match(pattern)?.[0]).filter(Boolean);
+if (leaks.length) {
+  throw new Error(`prerender: contact details leaked into the built HTML: ${leaks.join(', ')}. Keep them in src/data/contact.js.`);
+}
+
 await writeFile(indexPath, html);
 await rm(ssrDir, { recursive: true, force: true });

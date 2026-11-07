@@ -7,6 +7,7 @@ import ResumeDownload from './components/ResumeDownload.jsx';
 import SocialProfiles from './components/SocialProfiles.jsx';
 import ProfileHero from './components/ProfileHero.jsx';
 import PortfolioExplorer from './components/PortfolioExplorer.jsx';
+import ChatLauncher from './components/ChatLauncher.jsx';
 import ProfileSidePanel from './components/ProfileSidePanel.jsx';
 import usePortfolioLocation from './hooks/usePortfolioLocation.js';
 import { ProfilePanelProvider, useProfilePanel } from './hooks/useProfilePanel.jsx';
@@ -63,6 +64,8 @@ function AppShell() {
       <a href="#home">{t("Back to top ↑")}</a>
     </footer>
     <ProfileSidePanel />
+    {/* Hidden while a section modal or the profile panel is open, so it never floats over them. */}
+    {!backgroundInert && <ChatLauncher />}
   </>;
 }
 

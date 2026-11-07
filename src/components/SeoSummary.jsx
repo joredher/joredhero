@@ -4,6 +4,7 @@ import { education, certifications } from '../data/education.js';
 import { technologyGroups } from '../data/technologies.js';
 import { projects } from '../data/projects.js';
 import { communities } from '../data/communities.js';
+import { processSteps } from '../data/process.js';
 import { socialLinks } from '../data/socialLinks.js';
 import { resolveBilingual } from '../i18n/bilingual.js';
 
@@ -34,7 +35,7 @@ export default function SeoSummary() {
     <dl>
       <div><dt>Based in</dt><dd>{profile.location}</dd></div>
       <div><dt>Languages</dt><dd>{profile.languages.join(', ')}</dd></div>
-      <div><dt>Contact</dt><dd>{profile.email}</dd></div>
+      <div><dt>Contact</dt><dd>Use the chat button on the page, or the LinkedIn profile below.</dd></div>
     </dl>
 
     <h3>Experience</h3>
@@ -60,6 +61,11 @@ export default function SeoSummary() {
       <p>Built with: {project.technologies.map(tech => tech.label).join(', ')}</p>
     </article>)}
 
+    <h3>How I work</h3>
+    <ol>{processSteps.map(step => <li key={step.id}>
+      <strong>{en(step.title)}</strong>: {en(step.summary)} What I need from you: {en(step.youProvide)}
+    </li>)}</ol>
+
     {communities.length > 0 && <>
       <h3>Communities</h3>
       {communities.map(community => <article key={community.id}>
@@ -69,7 +75,7 @@ export default function SeoSummary() {
     </>}
 
     <h3>Contact</h3>
-    <p>{profile.email}</p>
-    <ul>{socialLinks.map(link => <li key={link.id}><a href={link.href}>{link.label}</a></li>)}</ul>
+    <p>Use the chat button on the page, or the profile links below.</p>
+    <ul>{socialLinks.filter(link => link.href).map(link => <li key={link.id}><a href={link.href}>{link.label}</a></li>)}</ul>
   </div>;
 }

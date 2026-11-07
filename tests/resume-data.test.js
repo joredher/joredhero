@@ -75,3 +75,29 @@ test('legacy technology links and journey aliases survive; invalid records stay 
     assert.equal(resolvePortfolioLocation(hash).section, 'missing');
   }
 });
+
+test('How I work: the conversation is bilingual and complete', async () => {
+  const { conversation } = await import('../src/data/conversation.js');
+  const { processSteps } = await import('../src/data/process.js');
+  const bilingual = (value, label) => {
+    for (const lang of ['en', 'es']) assert.ok(value?.[lang]?.trim(), `${label}: missing ${lang}`);
+  };
+  bilingual(conversation.greeting, 'greeting');
+  bilingual(conversation.closing, 'closing');
+  bilingual(conversation.subject, 'subject');
+  bilingual(conversation.path.intro, 'path intro');
+  assert.equal(conversation.steps.length, 4);
+  assert.equal(new Set(conversation.steps.map(step => step.id)).size, conversation.steps.length);
+  for (const step of conversation.steps) {
+    bilingual(step.question, `${step.id} question`);
+    assert.ok(step.options.length >= 2);
+    assert.equal(new Set(step.options.map(option => option.id)).size, step.options.length);
+    for (const option of step.options) for (const field of ['label', 'summary', 'reply']) bilingual(option[field], `${step.id}/${option.id} ${field}`);
+  }
+  // The last question picks the contact channel, which the section turns into a link.
+  assert.deepEqual(conversation.steps[3].options.map(option => option.id), ['whatsapp', 'email']);
+  for (const lang of ['en', 'es']) for (const key of ['{build}', '{stage}', '{when}']) {
+    assert.ok(conversation.message[lang].includes(key), `message.${lang} needs ${key}`);
+  }
+  for (const step of processSteps) for (const field of ['title', 'summary', 'youProvide']) bilingual(step[field], `${step.id} ${field}`);
+});

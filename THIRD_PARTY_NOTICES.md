@@ -11,6 +11,10 @@ The selected SVG assets are stored locally in `src/assets/icons/`.
 - OpenAI (used for ChatGPT), GitHub Copilot and WhatsApp: [Simple Icons](https://github.com/simple-icons/simple-icons/tree/13.21.0),
   version `13.21.0`, from `icons/`. CC0 1.0 license:
   `src/assets/icons/SIMPLE-ICONS-LICENSE.txt`.
+- Chat button and close icons: [Heroicons](https://github.com/tailwindlabs/heroicons) by Tailwind
+  Labs, version `2.2.0`, outline set (`chat-bubble-left-right`, `x-mark`, `arrow-path`, `chevron-down`). MIT license:
+  `src/assets/icons/HEROICONS-LICENSE.txt`. The path geometry is inlined unchanged in
+  `src/components/HeroIcon.jsx`, with the stroke set to `currentColor`.
 - Casanare Devs: the [official logo](https://casanare.dev/logo.svg), supplied by the
   portfolio owner as the community's logo source. Stored without graphic changes
   in `src/assets/icons/casanare-dev.svg` and used to identify the linked community.

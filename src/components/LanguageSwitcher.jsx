@@ -3,9 +3,10 @@ import colombia from '../assets/icons/co.svg';
 import australia from '../assets/icons/au.svg';
 import './identity-controls.css';
 
-export default function LanguageSwitcher() {
+// `compact` is the smaller variant used inside the chat panel's header.
+export default function LanguageSwitcher({ compact = false }) {
   const { language, setLanguage, t } = useLanguage();
-  return <div className="language-switcher"
+  return <div className={`language-switcher${compact ? ' language-switcher--compact' : ''}`}
               role="group" 
               aria-label={t('Language')}>
           {

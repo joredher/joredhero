@@ -30,7 +30,6 @@ export function renderPersonJsonLd() {
     '@type': 'Person',
     name: profile.name,
     alternateName: profile.fullName,
-    email: profile.email,
     jobTitle: en(profile.role),
     description: en(profile.biography),
     address: { '@type': 'PostalAddress', addressLocality: profile.location },

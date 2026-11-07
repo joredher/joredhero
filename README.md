@@ -30,7 +30,7 @@ npm run preview  # local preview of the production build
 
 | File | Content |
 | --- | --- |
-| `src/data/profile.js` | Name, role, biography, background, languages and contact information |
+| `src/data/profile.js` | Name, role, biography, background and languages (email and WhatsApp: see `contact.js`) |
 | `src/data/experience.js` | Roles: dates, title, brief highlights, full responsibilities and technologies |
 | `src/data/companies.js` | Employers: name, website, LinkedIn, city, region and country |
 | `src/data/countries.js` | Country names (flags are mapped in `CountryFlag.jsx`) |
@@ -153,3 +153,25 @@ logo mappings live in CommunityCard.jsx. No leadership role or event history is 
 The shared monogram is eo. (Eduardo Oropeza); the hero continues to display Jorge
 Hernández. Social links show logos only, with accessible names, hover titles, and
 46px touch targets in Contact and the footer.
+
+## Chat
+
+A floating **Chat** button (`ChatLauncher.jsx`) opens a panel with a scripted, bilingual
+conversation (`ConversationChat.jsx`): four tappable questions, the five-step process from
+`src/data/process.js`, and a prefilled WhatsApp or email message. All of its wording lives in
+`src/data/conversation.js` and `src/data/process.js` and is **draft copy** until reviewed.
+The panel's footer always links to WhatsApp and email. Jorge's avatar crops the existing
+"relaxed" portrait with CSS (`ChatAvatar.jsx`), so no extra image is downloaded. The chat and
+close icons come from Heroicons (see `THIRD_PARTY_NOTICES.md`). There is no language model or
+server behind the chat yet.
+
+## Contact details and scraping
+
+The email address and WhatsApp number are stored base64-encoded in `src/data/contact.js` and
+only decoded in the browser after the page loads (`src/hooks/useContact.js`). The built HTML and
+the JavaScript bundle therefore hold no address or number for scrapers to harvest, and
+`scripts/prerender.mjs` fails the production build if a raw email, `mailto:` or `wa.me` link
+ever appears in the HTML. To change a value: `node -e "console.log(btoa('new value'))"` and paste
+it into `contact.js`. The résumé PDFs still contain your contact details, because that is what a
+résumé is for. `server/` holds the message screening, rate limiting and handoff pipeline for the
+future chat endpoint; `tests/security.test.js` simulates scammers and real clients against it.
